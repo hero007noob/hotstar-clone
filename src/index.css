@@ -11,3 +11,48 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* ----------------------------------------------login page------------------- */
+.login-page{
+  overflow: hidden;
+  
+}
+.dummy-header{
+  
+  background-color:#141b29;
+  width: 100%;
+  margin: auto;
+ }
+
+.login-body{
+  color: white;
+  /* background-image: url('http://secure-media.hotstar.com/static/sunset/us/assets/web/background-2.png'); */
+  background-Image:
+   linear-gradient(to bottom,#9ba7c100,  #0c111b 450px),
+   url('images/login-background.jpg');
+   /* animation: slide 60s linear infinite; */
+  height: 100vh;
+  width: 5076px;
+  
+}
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1692px, 0, 0); /* The image width */
+  }
+}
+
+
+
+.subscribe-tab{
+ 
+width: 4000px;
+ height: 200px;
+ background-color: aqua;
+
+}
+
+
+
+/* ---------------------------------------------login page--------------------- */
