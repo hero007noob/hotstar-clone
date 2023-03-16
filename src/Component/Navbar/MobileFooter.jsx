@@ -7,7 +7,7 @@ import React from "react";
 
 function MobileFooter() {
   return (
-    <Box display={{ sm: "none", md: "none", lg: "none" }}>
+    <Box display={{ sm: "none", md: "none", lg: "none" }} zIndex={10}>
       <Flex
         p="2"
         alignItems="center"
@@ -19,7 +19,7 @@ function MobileFooter() {
         bottom="0"
         left="0"
         right="0"
-      >
+        zIndex={10}>
         <Box opacity={0.6}>
           <IconButton
             aria-label="Menu"

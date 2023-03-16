@@ -1,9 +1,11 @@
+import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Text } from "@chakra-ui/layout";
-import { capitalize, round } from "lodash";
-import React from "react";
+import { capitalize, round, upperCase } from "lodash";
+import React, { useState } from "react";
 import styles from "../../CSS/verticalCard.module.css";
 export default function VerticalCard({ data }) {
+  const [toggle, setToggle] = useState(true);
   console.log(data);
   const imagBaseUrl = "https://image.tmdb.org/t/p/original";
   return (
@@ -17,6 +19,7 @@ export default function VerticalCard({ data }) {
             src={imagBaseUrl + data.poster_path}
             width={"100%"}
             alt="banner"
+            objectFit={"contain"}
           />
         </div>
         <div
@@ -36,6 +39,35 @@ export default function VerticalCard({ data }) {
           <Text color={"#ffffffcc"} fontSize={"10px"} noOfLines={3}>
             {data.overview}
           </Text>
+          <Button
+            leftIcon={
+              <Image
+                src={
+                  toggle
+                    ? "https://www.hotstar.com/assets/316d889ad60190a1ae8948c13352ff9d.svg"
+                    : "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KICAgIDxwYXRoIGZpbGw9IiMxRjgwRTAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTkuNzQyIDE3Ljk4NGwtLjA1My0uMDAxYy0uNDQ0LS4wMTYtLjg2LS4yMjEtMS4xNDItLjU2NGwtNC40Ni01LjQyMmMtLjUxNC0uNjI2LS41MzItMS41NjUuMDQtMi4xMzguNjU3LS42NiAxLjcyLS41OTUgMi4yOTYuMTA1bDMuMjE0IDMuOTA3Yy4wOTguMTIuMjguMTI2LjM4Ny4wMTNsNy44OS04LjM1MWMuNTU2LS41ODggMS40ODYtLjcyNSAyLjEyNy0uMjMuNzM3LjU2OC44MDcgMS42MzIuMTg0IDIuMjkxTDEwLjg2NyAxNy41Yy0uMjkzLjMxLS43LjQ4NS0xLjEyNS40ODUiLz4KPC9zdmc+Cg=="
+                }
+                w={"10px"}
+              />
+            }
+            colorScheme="whiteAlpha"
+            color={"rgba(255, 255, 255, 0.6)"}
+            fontSize="9px"
+            padding={"5px"}
+            boxSizing={"border-box"}
+            marginBottom="5px"
+            borderRadius="3px"
+            background={"transparent"}
+            w={"100%"}
+            _hover={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+            textAlign="left"
+            justifyContent={"left"}
+            h={"16%"}
+            onClick={() => setToggle((tog) => !tog)}>
+            {toggle
+              ? upperCase("Add to Watchlist")
+              : upperCase("Remove from Watchlist")}
+          </Button>
         </div>
       </div>
     </div>

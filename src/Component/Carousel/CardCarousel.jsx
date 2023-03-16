@@ -8,7 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 import BannerImage from "../BannerImage/BannerImage";
 import VerticalCard from "../Cards/VerticalCard";
 import styles from "../../CSS/CardCarousel.module.css";
-export default function CardCarousel({ data }) {
+export default function CardCarousel({ data, title }) {
   console.log("um", data);
   const responsive = {
     superLargeDesktop: {
@@ -18,17 +18,27 @@ export default function CardCarousel({ data }) {
       partialVisibilityGutter: 40,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1440 },
       items: 7,
       partialVisibilityGutter: 40,
     },
+    smallerDesktop: {
+      breakpoint: { max: 1440, min: 1024 },
+      items: 5,
+      partialVisibilityGutter: 40,
+    },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      breakpoint: { max: 1024, min: 600 },
+      items: 3,
       partialVisibilityGutter: 20,
     },
+    largeMobiles: {
+      breakpoint: { max: 600, min: 380 },
+      items: 2,
+      partialVisibilityGutter: 0,
+    },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 380, min: 0 },
       items: 1,
       partialVisibilityGutter: 0,
     },
@@ -41,11 +51,24 @@ export default function CardCarousel({ data }) {
       alignItems={"center"}
       verticalAlign={true}
       justifyContent={"center"}
+      position={"relative"}
       mt="100px">
+      <Text
+        style={{
+          color: "white",
+          position: "absolute",
+          left: "10px",
+          top: "0",
+          fontSize: "28px",
+          fontWeight: "500",
+          zIndex: 2,
+        }}>
+        {title}
+      </Text>
       <Carousel
         responsive={responsive}
         partialVisbile={true}
-        swipeable={false}
+        swipeable={true}
         draggable={false}
         showDots={false}
         ssr={true} // means to render carousel on server-side.
@@ -53,7 +76,7 @@ export default function CardCarousel({ data }) {
         keyBoardControl={true}
         slidesToSlide={7}
         containerClass={styles.carousel_container}
-        // removeArrowOnDeviceType={["tablet", "mobile"]}
+        removeArrowOnDeviceType={["tablet", "largeMobiles", "mobile"]}
         itemClass={styles.carousel_item}
         customLeftArrow={<CustomLeft />}
         customRightArrow={<CustomRight />}>

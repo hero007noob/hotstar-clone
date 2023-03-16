@@ -1,4 +1,4 @@
-import { Stack, Text } from "@chakra-ui/layout";
+import { Flex, Stack, Text } from "@chakra-ui/layout";
 import React, { useEffect } from "react";
 import { Box } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,9 +9,15 @@ export default function Home() {
   const dispatch = useDispatch();
   const popular = useSelector((state) => state.movieReducer.popular);
   const latest = useSelector((state) => state.movieReducer.latest);
+  const grossing = useSelector((state) => state.movieReducer.grossing);
+  const rated = useSelector((state) => state.movieReducer.rated);
+  const viewed = useSelector((state) => state.movieReducer.viewed);
   useEffect(() => {
     dispatch(getMovies("popularity.desc", "popular"));
     dispatch(getMovies("release_date.desc", "latest"));
+    dispatch(getMovies("revenue.desc", "grossing"));
+    dispatch(getMovies("vote_average.desc", "rated"));
+    dispatch(getMovies("vote_count.desc", "viewed"));
     return () => {};
   }, []);
   useEffect(() => {
@@ -20,22 +26,16 @@ export default function Home() {
   }, [popular]);
 
   return (
-    <Stack
+    <Flex
+      direction={"column"}
       background={"linear-gradient(to bottom, #141b29, #0c111b 300px)"}
-      spacing={"50px"}>
+      paddingBottom={"50px"}>
       <TopCarousel />
-      <CardCarousel data={popular} />
-      <Stack spacing={"1px"}>
-        <Text color={"white"} align="left" pl={"20px"} margin={"0"}>
-          Hey
-        </Text>
-      </Stack>
-      <Stack spacing={"1px"}>
-        <Text color={"white"} align="left" pl={"20px"} margin={"0"}>
-          Hey
-        </Text>
-        <CardCarousel data={latest} />
-      </Stack>
-    </Stack>
+      <CardCarousel data={popular} title={"Popular Movies"} />
+      <CardCarousel data={latest} title={"Latest & Trending"} />
+      <CardCarousel data={grossing} title={"Top Grossing"} />
+      <CardCarousel data={rated} title={"Top Rated"} />
+      <CardCarousel data={viewed} title={"Most Viewed"} />
+    </Flex>
   );
 }

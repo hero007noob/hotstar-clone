@@ -65,7 +65,7 @@ const Navbar = () => {
       color="white"
       w="100%"
       position="fixed"
-    >
+      zIndex={10}>
       <Menu isOpen={isOpenMenu}>
         <MenuButton
           onMouseEnter={handleMouseEnter}
@@ -95,8 +95,7 @@ const Navbar = () => {
           isOpen={isOpen}
           placement="left"
           onClose={onClose}
-          finalFocusRef={btnRef}
-        >
+          finalFocusRef={btnRef}>
           <DrawerOverlay />
           <DrawerContent bg={"#192133"}>
             <DrawerCloseButton />
@@ -110,8 +109,7 @@ const Navbar = () => {
                   color={"white"}
                   fontSize="16px"
                   fontWeight={400}
-                  opacity={0.6}
-                >
+                  opacity={0.6}>
                   For a better experience
                 </Text>
               </Box>
@@ -182,14 +180,12 @@ const Navbar = () => {
           bg="#192133"
           border="none"
           minW="150px"
-          borderRadius="0"
-        >
+          borderRadius="0">
           <MenuItem
             bg="#192133"
             opacity="0.8"
             color="white"
-            _hover={{ bg: "#0c111b", opacity: "1" }}
-          >
+            _hover={{ bg: "#0c111b", opacity: "1" }}>
             <Image
               boxSize="1.4rem"
               src="https://lh3.ggpht.com/MPndj4KtVlLgFC1IC2BE6e2Gbx_ylMCnWnbIUduAMhmQ3KZowrQtHq_BgaPGsH6onwrP=w1200-h630-p-k-no-nu"
@@ -202,8 +198,7 @@ const Navbar = () => {
             bg="#192133"
             color="white"
             opacity="0.8"
-            _hover={{ bg: "#0c111b", opacity: "1" }}
-          >
+            _hover={{ bg: "#0c111b", opacity: "1" }}>
             <Image
               boxSize="1.4rem"
               src="https://ec.europa.eu/eurostat/cros/profiles/multisite_drupal_standard/modules/features/nexteuropa_multilingual/theme/language-icon.png"
@@ -218,8 +213,7 @@ const Navbar = () => {
             bg="#192133"
             color="white"
             opacity="0.8"
-            _hover={{ bg: "#0c111b", opacity: "1" }}
-          >
+            _hover={{ bg: "#0c111b", opacity: "1" }}>
             <Image
               boxSize="1.4rem"
               src="https://cdn2.iconfinder.com/data/icons/movie-icons/512/Theatre_Masks-1024.png"
@@ -246,8 +240,7 @@ const Navbar = () => {
         display={{ sm: "none", md: "none", lg: "none" }}
         bg="#1f80e0"
         colorScheme="#1f80e0"
-        w={{ sm: "60px", md: "80px" }}
-      >
+        w={{ sm: "60px", md: "80px" }}>
         SUBSCRIBE
       </Button>
       <Tv />
@@ -257,8 +250,7 @@ const Navbar = () => {
         display={{ sm: "none", md: "none", lg: "block" }}
         fontSize={{ base: "md", md: "lg" }}
         mr={{ base: "0", md: "6" }}
-        className={navStyles.disneyPlus}
-      >
+        className={navStyles.disneyPlus}>
         Disney+
       </Text>
       <Spacer />
@@ -269,8 +261,7 @@ const Navbar = () => {
         onBlur={handleBlur}
         transition="width 0.2s ease-in-out"
         className={navStyles.searchBox}
-        display={{ sm: "block", md: "block", lg: "block" }}
-      >
+        display={{ sm: "block", md: "block", lg: "block" }}>
         <Input
           type="text"
           placeholder="Search"
@@ -287,8 +278,7 @@ const Navbar = () => {
         pointerEvents="none"
         children={<SearchIcon color="gray.300" />}
         className={navStyles.searchBtn}
-        display={{ sm: "none", md: "none", lg: "none" }}
-      ></Box>
+        display={{ sm: "none", md: "none", lg: "none" }}></Box>
       <Button
         size="xs"
         fontWeight="bold"
@@ -297,8 +287,7 @@ const Navbar = () => {
         className={navStyles.subBtn}
         bg="#1f80e0"
         colorScheme="#1f80e0"
-        w={{ sm: "70px", md: "80px" }}
-      >
+        w={{ sm: "70px", md: "80px" }}>
         SUBSCRIBE
       </Button>
       <Button
@@ -306,8 +295,7 @@ const Navbar = () => {
         colorScheme="white"
         className={navStyles.loginBtn}
         display={{ sm: "block", md: "block", lg: "block" }}
-        fontSize={{ sm: "12px", md: "16px" }}
-      >
+        fontSize={{ sm: "12px", md: "16px" }}>
         LOGIN
       </Button>
       {/* <IconButton
