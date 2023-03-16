@@ -1,0 +1,11 @@
+.carousel_container {
+  height: 500px;
+  /* top: 0; */
+}
+.carousel_item:hover {
+  z-index: 5;
+}
+.carousel_item {
+  /* margin: -5px; */
+  /* width: 200px !important; */
+}
