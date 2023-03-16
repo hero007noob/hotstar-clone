@@ -31,8 +31,8 @@ function TopCarousel() {
   };
   return (
     <Box
+      w={"100%"}
       borderRadius={"10px"}
-      boxSize="border-box"
       overflow="hidden"
       margin={"auto"}
       mt={"100px"}>
