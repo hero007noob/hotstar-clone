@@ -2,15 +2,16 @@ import React from "react";
 import { AddIcon, CheckIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 import Styles from "../CSS/Moviedtails.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies } from "../Redux/movies/action";
+import { getMovies, getSimilar } from "../Redux/movies/action";
 import CardCarousel from "./Carousel/CardCarousel";
 
 function ProductDetail(props) {
   const parms = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   console.log("params", parms);
   let [key, setkey] = useState({
     backdrop_path: "",
@@ -21,8 +22,8 @@ function ProductDetail(props) {
     overview: "",
   });
   let [play, setplay] = useState(false);
-  let url = `https://api.themoviedb.org/3/${parms.type}/${parms.id}?api_key=24ca5a64d4833b96467da5ed3580a957&language=en-US`;
   function getID() {
+    let url = `https://api.themoviedb.org/3/${parms.type}/${parms.id}?api_key=24ca5a64d4833b96467da5ed3580a957&language=en-US`;
     fetch(url)
       .then((res) => res.json())
       .then((jsres) => {
@@ -31,12 +32,13 @@ function ProductDetail(props) {
   }
   useEffect(() => {
     getID();
-  }, []);
+  }, [parms.id]);
   const similar = useSelector((state) => state.movieReducer.similar);
   useEffect(() => {
-    dispatch(getMovies("vote_count.desc", "similar"));
+    console.log("eee");
+    dispatch(getSimilar({ id: parms.id, key: "similar" }));
     return () => {};
-  }, []);
+  }, [parms.id]);
   return (
     <Flex w={"100%"} direction="column">
       <div className={Styles.Container}>
@@ -59,7 +61,11 @@ function ProductDetail(props) {
           <h5>{key.overview}</h5>
           <div className={Styles.Control}>
             <div>
-              <button className={Styles.btn}>
+              <button
+                className={Styles.btn}
+                onClick={() => {
+                  navigate(`/play/${parms.type}/${parms.id}`);
+                }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -127,7 +133,7 @@ function ProductDetail(props) {
           />
         </div>
       </div>
-      <div style={{ width: "98%", margin: "0 auto" }}>
+      <div style={{ width: "97%", margin: "0 auto" }}>
         <CardCarousel data={similar} type={"movie"} title={"More Like This"} />
       </div>
     </Flex>

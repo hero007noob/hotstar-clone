@@ -17,10 +17,10 @@ function App() {
         <BrowserRouter>
           <ChakraProvider>
             <Navbar />
-               
+
             <AllRoutes />
-           
-          
+
+
           </ChakraProvider>
         </BrowserRouter>
       </Provider>

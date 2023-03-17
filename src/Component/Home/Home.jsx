@@ -13,11 +13,11 @@ export default function Home() {
   const rated = useSelector((state) => state.movieReducer.rated);
   const viewed = useSelector((state) => state.movieReducer.viewed);
   useEffect(() => {
-    dispatch(getMovies("popularity.desc", "popular"));
-    dispatch(getMovies("release_date.desc", "latest"));
-    dispatch(getMovies("revenue.desc", "grossing"));
-    dispatch(getMovies("vote_average.desc", "rated"));
-    dispatch(getMovies("vote_count.desc", "viewed"));
+    dispatch(getMovies({ sort: "popularity.desc", key: "popular" }));
+    dispatch(getMovies({ sort: "release_date.desc", key: "latest" }));
+    dispatch(getMovies({ sort: "revenue.desc", key: "grossing" }));
+    dispatch(getMovies({ sort: "vote_average.desc", key: "rated" }));
+    dispatch(getMovies({ sort: "vote_count.desc", key: "viewed" }));
     return () => {};
   }, []);
   useEffect(() => {

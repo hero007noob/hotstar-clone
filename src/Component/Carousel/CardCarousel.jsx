@@ -8,7 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 import BannerImage from "../BannerImage/BannerImage";
 import VerticalCard from "../Cards/VerticalCard";
 import styles from "../../CSS/CardCarousel.module.css";
-export default function CardCarousel({ data, type, title }) {
+export default function CardCarousel({ data, type, title, mt = "100px" }) {
   console.log("um", data);
   const responsive = {
     superLargeDesktop: {
@@ -52,7 +52,7 @@ export default function CardCarousel({ data, type, title }) {
       verticalAlign={true}
       justifyContent={"center"}
       position={"relative"}
-      mt="100px">
+      mt={mt}>
       <Text
         style={{
           color: "white",

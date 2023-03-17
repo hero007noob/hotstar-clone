@@ -2,14 +2,27 @@ import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Text } from "@chakra-ui/layout";
 import { capitalize, round, upperCase } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../CSS/verticalCard.module.css";
 export default function VerticalCard({ data, type }) {
   const [toggle, setToggle] = useState(true);
   const navigate = useNavigate();
-  console.log(data);
   const imagBaseUrl = "https://image.tmdb.org/t/p/original";
+  const addToWishlist = (id) => {
+    console.log("addToWishlist", id);
+  };
+  const removeFromWishlist = (id) => {
+    console.log("removeFromWishlist", id);
+  };
+  useEffect(() => {
+    let id = "123";
+    if (id) {
+      setToggle(true);
+    }
+    return () => {};
+  }, []);
+
   return (
     <div style={{ padding: "10px", height: "100%" }}>
       <div
@@ -68,7 +81,10 @@ export default function VerticalCard({ data, type }) {
             textAlign="left"
             justifyContent={"left"}
             h={"16%"}
-            onClick={() => setToggle((tog) => !tog)}>
+            onClick={() => {
+              toggle ? addToWishlist(data.id) : removeFromWishlist(data.id);
+              setToggle((tog) => !tog);
+            }}>
             {toggle
               ? upperCase("Add to Watchlist")
               : upperCase("Remove from Watchlist")}
