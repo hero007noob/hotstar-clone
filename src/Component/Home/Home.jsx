@@ -29,13 +29,16 @@ export default function Home() {
     <Flex
       direction={"column"}
       background={"linear-gradient(to bottom, #141b29, #0c111b 300px)"}
-      paddingBottom={"50px"}>
+      paddingBottom={"50px"}
+      w="100vw"
+      margin={"0"}
+      overflow="hidden">
       <TopCarousel />
-      <CardCarousel data={popular} title={"Popular Movies"} />
-      <CardCarousel data={latest} title={"Latest & Trending"} />
-      <CardCarousel data={grossing} title={"Top Grossing"} />
-      <CardCarousel data={rated} title={"Top Rated"} />
-      <CardCarousel data={viewed} title={"Most Viewed"} />
+      <CardCarousel data={popular} type={"movie"} title={"Popular Movies"} />
+      <CardCarousel data={latest} type={"movie"} title={"Latest & Trending"} />
+      <CardCarousel data={grossing} type={"movie"} title={"Top Grossing"} />
+      <CardCarousel data={rated} type={"movie"} title={"Top Rated"} />
+      <CardCarousel data={viewed} type={"movie"} title={"Most Viewed"} />
     </Flex>
   );
 }

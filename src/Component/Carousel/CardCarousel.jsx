@@ -8,7 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 import BannerImage from "../BannerImage/BannerImage";
 import VerticalCard from "../Cards/VerticalCard";
 import styles from "../../CSS/CardCarousel.module.css";
-export default function CardCarousel({ data, title }) {
+export default function CardCarousel({ data, type, title }) {
   console.log("um", data);
   const responsive = {
     superLargeDesktop: {
@@ -71,7 +71,7 @@ export default function CardCarousel({ data, title }) {
         swipeable={true}
         draggable={false}
         showDots={false}
-        ssr={true} // means to render carousel on server-side.
+        ssr={false} // means to render carousel on server-side.
         infinite={true}
         keyBoardControl={true}
         slidesToSlide={7}
@@ -83,7 +83,7 @@ export default function CardCarousel({ data, title }) {
         {data != undefined &&
           data.map((item) => {
             if (item.poster_path != undefined)
-              return <VerticalCard data={item} />;
+              return <VerticalCard data={item} type={type} />;
           })}
       </Carousel>
     </Box>
