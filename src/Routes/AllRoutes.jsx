@@ -3,7 +3,8 @@ import Language from "../Component/Navbar/Language";
 import { Route, Routes } from "react-router-dom";
 import Home from "../Component/Home/Home";
 import ProductDetail from "../Component/ProductDetail";
-
+import Genre from '../Component/Genre'
+import Filtered from '../Component/Filtered'
 function AllRoutes() {
   const routes = [
     {
@@ -18,6 +19,14 @@ function AllRoutes() {
       path: "/watch/:type/:id",
       element: <ProductDetail />,
     },
+    {
+      path:"/genre",
+      element:<Genre/>
+    },
+    {
+      path:"/filtered/:id",
+      element:<Filtered/>
+    }
   ];
 
   return (

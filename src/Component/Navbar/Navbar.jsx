@@ -31,15 +31,16 @@ import navStyles from "./navbar.module.css";
 import Tv from "./tv";
 import Movies from "./Movies";
 import Sports from "./Sports";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+ 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [inputWidth, setInputWidth] = useState("200px");
   const [isOpenMenu, setIsOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
-
+  const navigate=useNavigate();
   const handleClick = () => {
     setInputWidth("300px");
   };
@@ -142,16 +143,19 @@ const Navbar = () => {
                   />
                   <span>Language</span>
                 </Flex>
-              </Link>
-              <Flex color={"white"} opacity={0.8} margin="40px 0">
+              </Link >
+             <Link to={"/genre"}>
+              <Flex  color={"white"} opacity={0.8} margin="40px 0">
                 <Image
                   boxSize="1.4rem"
                   src="https://cdn2.iconfinder.com/data/icons/movie-icons/512/Theatre_Masks-1024.png"
                   alt="Genres"
                   mr="20px"
                 />
+
                 <span>Genres</span>
               </Flex>
+              </Link>
             </DrawerBody>
 
             {/* <DrawerFooter>
