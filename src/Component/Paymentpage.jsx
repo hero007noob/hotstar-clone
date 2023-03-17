@@ -12,28 +12,41 @@ function Paymentpage() {
     
     <div className='payment-card1'>
         <div>Credit card</div>
-        <div></div>
+        <div> <img src="https://www.vhv.rs/dpng/d/462-4625301_credit-card-icons-png-download-transparent-background-credit.png"
+         alt="" width="100px" /></div>
     </div>
 
     <div className='payment-card'>
-        <div>Credit card</div>
-        <div></div>
+        <div>Debit card</div>
+        <div> <img src="https://www.vhv.rs/dpng/d/462-4625301_credit-card-icons-png-download-transparent-background-credit.png"
+         alt="" width="100px" /></div>
+    </div>
+    <div className='payment-card'>
+        <div>Netbanking</div>
+        <div> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9vc7jodNbGuQEjWLPQb_jLoi2U3Ss17HzA&usqp=CAU
+"
+         alt="" width="26   px" /></div>
+    </div>
+    
+    <div className='payment-card'>
+        <div>Paytm</div>
+        <div> <img src="https://1000logos.net/wp-content/uploads/2021/03/Paytm_Logo.jpg
+"
+         alt="" width="80px" /></div>
+    </div>
+    
+    <div className='payment-card'>
+        <div>UPI</div>
+        <div> <img src="https://e7.pngegg.com/pngimages/795/596/png-clipart-logo-line-angle-brand-line-angle-triangle.png
+"
+         alt="" width="50px" /></div>
     </div>
 
-    <div className='payment-card'>
-        <div>Credit card</div>
-        <div></div>
-    </div>
-
-    <div className='payment-card'>
-        <div>Credit card</div>
-        <div></div>
-    </div>
-
-    <div className='payment-card'>
-        <div>Credit card</div>
-        <div></div>
-    </div>
+    <div className='payment-page-low-text'>
+        <p> You will be charged ₹899 once a year until you cancel.
+By proceeding, I confirm that I am over 18, and I agree to the Terms of use and Privacy policy</p>
+       
+            </div>
     
     
     

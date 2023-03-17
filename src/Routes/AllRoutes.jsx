@@ -3,8 +3,9 @@ import Language from "../Component/Navbar/Language";
 import { Route, Routes } from "react-router-dom";
 import Home from "../Component/Home/Home";
 import ProductDetail from "../Component/ProductDetail";
-import Genre from '../Component/Genre'
-import Filtered from '../Component/Filtered'
+import Genre from "../Component/Genre";
+import Filtered from "../Component/Filtered";
+import Login from "../Component/Login";
 function AllRoutes() {
   const routes = [
     {
@@ -20,13 +21,13 @@ function AllRoutes() {
       element: <ProductDetail />,
     },
     {
-      path:"/genre",
-      element:<Genre/>
+      path: "/genre",
+      element: <Genre />,
     },
     {
-      path:"/filtered/:id",
-      element:<Filtered/>
-    }
+      path: "/filtered/:id",
+      element: <Filtered />,
+    },
   ];
 
   return (

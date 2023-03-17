@@ -8,7 +8,8 @@ import { store } from './Redux/store';
 import Navbar from './Component/Navbar/Navbar'
 import MobileFooter from './Component/Navbar/MobileFooter'
 import { BrowserRouter } from 'react-router-dom';
-import AllRoutes from './Routes/AllRoutes'
+import AllRoutes from './Routes/AllRoutes';
+
 function App() {
   return (
     <div className="App">
@@ -16,7 +17,10 @@ function App() {
         <BrowserRouter>
           <ChakraProvider>
             <Navbar />
+               
             <AllRoutes />
+           
+          
           </ChakraProvider>
         </BrowserRouter>
       </Provider>
