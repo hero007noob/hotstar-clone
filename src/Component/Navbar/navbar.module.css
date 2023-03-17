@@ -1,0 +1,38 @@
+@media screen and (min-width: 0px) and (max-width: 480px) {
+  .subBtn {
+    display: none;
+  }
+  .subBtn2 {
+    display: block;
+    width: 80px;
+    margin-left: -15px;
+    font-size: 12px;
+  }
+  .menuBtn {
+    display: none;
+  }
+  .searchBox {
+    display: none;
+  }
+  .searchBtn {
+    display: block;
+  }
+  .tvComp {
+    display: none;
+  }
+  .movieComp {
+    display: none;
+  }
+  .sportComp {
+    display: none;
+  }
+  .disneyPlus {
+    display: none;
+  }
+  .loginBtn {
+    display: none;
+  }
+  .logo {
+    margin-left: -20px;
+  }
+}

@@ -1,33 +1,30 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 /* ----------------------------------------------login page------------------- */
-.login-page{
+.login-page {
   /* overflow: hidden; */
-  background-Image:
-  linear-gradient(to bottom,#9ba7c100,  #0c111b 450px),
-  url('images/login-background.jpg');
-   /* animation: slide 60s linear infinite; */
-  
+  background-image: linear-gradient(to bottom, #9ba7c100, #0c111b 450px),
+    url("images/login-background.jpg");
+  /* animation: slide 60s linear infinite; */
 }
-.dummy-header{
-  
-  background-color:#141b29;
+.dummy-header {
+  background-color: #141b29;
   width: 100%;
   margin: auto;
- }
+}
 
-.login-body{
+.login-body {
   color: white;
   /* background-image: url('http://secure-media.hotstar.com/static/sunset/us/assets/web/background-2.png'); */
   /* background-Image:
@@ -37,8 +34,6 @@ code {
   height: 100%;
   width: 100%;
   margin-top: 110px;
- 
-  
 }
 @keyframes slide {
   0% {
@@ -49,11 +44,7 @@ code {
   }
 }
 
-
-
-.subscription-box{
- 
-  
+.subscription-box {
   padding: 20px;
   margin: auto;
   background-color: #192133;
