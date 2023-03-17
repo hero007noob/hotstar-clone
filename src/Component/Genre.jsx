@@ -1,4 +1,6 @@
 import React from "react";
+import styles from "../CSS/genre.module.css";
+import { useNavigate } from "react-router-dom"; 
 function Genre() {
   const data = [{img: "https://img1.hotstarext.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/9188/1429188-a-8862be91a142",genre: "Romance",id:10749},
      {img: "https://img1.hotstarext.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/9173/1429173-a-65fa8a53d84d",genre: "Drama",id:18},
@@ -36,6 +38,7 @@ function Genre() {
      {img: "https://img1.hotstarext.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/9193/1429193-a-0499666e76a4",genre: "Standup",id:878},
      {img: "https://img1.hotstarext.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/9196/1429196-a-fd1355b3832d",genre: "Superhero",id:878},
 ];
+const genrNav = useNavigate();
 
   return (
      <div style={{backgroundColor: "#0F1014",marginTop: "-23px"}}>
@@ -43,7 +46,7 @@ function Genre() {
     <div className="div-box" style={{ display: "flex" , justifyContent: "center",backgroundColor: "#0F1014", flexWrap: "wrap",  }}>
       
       {data.map((elm) => (
-        <div className="box" style={{ margin: "5px", marginTop: "20px" , width: "220px", position: "relative" }}>
+        <div onClick={() => genrNav(`/genre/${elm.id}`)} className={styles.box}  style={{ margin: "5px", marginTop: "20px" , width: "220px", position: "relative" }}>
           <img src={elm.img} alt={elm.genre} style={{ maxWidth: "100%", height: "auto", borderRadius: '5px' }} />
          
         </div>
