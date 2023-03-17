@@ -1,8 +1,7 @@
 .Container {
-  max-height: calc(60vh - 70px);
-  /* min-height: 40%; */
   padding: calc(3.5vw + 5px);
   /* position: relative; */
+  height: 560px;
   position: relative;
   margin: 0 auto;
   margin-top: 90px;
@@ -10,6 +9,7 @@
   border-radius: 10px;
   overflow: hidden;
   color: white;
+  width: 97%;
 }
 .BackgroundImage {
   /* position: fixed; */
@@ -22,7 +22,7 @@
 }
 .gradient {
   top: 0;
-  left: calc(40% - 2px);
+  left: calc(40%);
   width: 200px;
   height: 100%;
   position: absolute;

@@ -5,28 +5,64 @@ import Home from "../Component/Home/Home";
 import ProductDetail from "../Component/ProductDetail";
 import Genre from "../Component/Genre";
 import Filtered from "../Component/Filtered";
-import Login from "../Component/Login";
+import Play from "../Component/Play";
+import Navbar from "../Component/Navbar/Navbar";
+
 function AllRoutes() {
   const routes = [
     {
       path: "/language",
-      element: <Language />,
+      element: (
+        <>
+          <Navbar />
+          <Language />,
+        </>
+      ),
     },
     {
       path: "/",
-      element: <Home />,
+      element: (
+        <>
+          <Navbar />
+          <Home />,
+        </>
+      ),
     },
     {
       path: "/watch/:type/:id",
-      element: <ProductDetail />,
+      element: (
+        <>
+          <Navbar />
+          <ProductDetail />,
+        </>
+      ),
     },
     {
       path: "/genre",
-      element: <Genre />,
+      element: (
+        <>
+          <Navbar />
+          <Genre />,
+        </>
+      ),
     },
     {
       path: "/filtered/:id",
-      element: <Filtered />,
+      element: (
+        <>
+          <Navbar />
+          <Filtered />,
+        </>
+      ),
+    },
+    {
+      path: "/play/:type/:id",
+      element: (
+        <>
+          <Navbar />
+          <Play />,
+        </>
+      ),
     },
   ];
 

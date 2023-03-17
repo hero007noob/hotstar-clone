@@ -11,7 +11,7 @@ export default function HorizontalCard({ data, type }) {
   console.log(data);
   const imagBaseUrl = "https://image.tmdb.org/t/p/original";
   return (
-    <div style={{ padding: "10px", height: "100%" }}>
+    <div style={{ padding: "10px", height: "200px", width: "300px" }}>
       <div
         className={styles.container}
         style={{ height: "100%", marginTop: "20px" }}>
