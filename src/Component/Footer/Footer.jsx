@@ -25,9 +25,15 @@ function Footer(props) {
       w="90%"
       margin={"auto"}
       fontSize="14px"
-      opacity={0.9}>
+      opacity={0.9}
+    >
       <Box>
-        <Flex w="80%" justifyContent={"space-between"} marginBottom="10PX">
+        <Flex
+          w="80%"
+          justifyContent={"space-between"}
+          marginBottom="10PX"
+          flexWrap={"wrap"}
+        >
           <Text>About Disney+ Hotstar</Text>
           <Text>Terms Of Use</Text>
           <Text>Privacy Policy</Text>
@@ -36,7 +42,7 @@ function Footer(props) {
           <Text>Careers</Text>
         </Flex>
         <Box>
-          <Text>
+          <Text fontSize={{ base: "12px", sm: "14px" }}>
             © 2023 STAR. All Rights Reserved. HBO, Home Box Office and all
             related channel and programming logos are service marks of, and all
             related programming visuals and elements are the property of, Home
@@ -45,7 +51,7 @@ function Footer(props) {
         </Box>
       </Box>
       <Flex justifyContent="space-between">
-        <Box paddingLeft={{ md: "30%" }}>
+        <Box paddingLeft={{ md: "20%" }}>
           <Box fontWeight={500}>Connect with us</Box>
           <Flex marginTop="10px">
             <Image
@@ -66,7 +72,14 @@ function Footer(props) {
         <Flex>
           <Box>
             <Box fontWeight={500}>Disney+ Hotstar App</Box>
-            <Flex marginTop="10px">
+            <Grid
+              gridTemplateColumns={{
+                base: "repeat(1,1fr)",
+                lg: "repeat(2,1fr)",
+              }}
+              marginTop="10px"
+              gap="10px"
+            >
               <Image
                 src="./SocialMediaImg/googlePlay.png"
                 alt="googlePlay"
@@ -74,7 +87,6 @@ function Footer(props) {
                 width="130px"
                 bg={"#192133"}
                 borderRadius="5px"
-                marginRight="5px"
                 _hover={{ bg: "#1f80e0" }}
               />
               <Image
@@ -86,7 +98,7 @@ function Footer(props) {
                 borderRadius="5px"
                 _hover={{ bg: "#1f80e0" }}
               />
-            </Flex>
+            </Grid>
           </Box>
         </Flex>
       </Flex>

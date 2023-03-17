@@ -157,7 +157,12 @@ const Navbar = () => {
                 </Flex>
               </Link>
               <Link to={"/genre"}>
-                <Flex color={"white"} opacity={0.8} margin="40px 0">
+                <Flex
+                  onClick={onClose}
+                  color={"white"}
+                  opacity={0.8}
+                  margin="40px 0"
+                >
                   <Image
                     boxSize="1.4rem"
                     src="https://cdn2.iconfinder.com/data/icons/movie-icons/512/Theatre_Masks-1024.png"
