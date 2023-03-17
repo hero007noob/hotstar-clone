@@ -44,7 +44,7 @@ function Genre() {
     <div className="div-box" style={{ display: "flex" , justifyContent: "center",backgroundColor: "#0F1014", flexWrap: "wrap",  }}>
       
       {data.map((elm) => (
-        <div className="box" style={{ margin: "5px", marginTop: "20px" , width: "220px", position: "relative" }}>
+        <div className="box" style={{ margin: "5px", marginTop: "19px" , width: "220px", position: "relative" }}>
           <img src={elm.img} alt={elm.genre} style={{ maxWidth: "100%", height: "auto", borderRadius: '5px' }} />
          
         </div>
