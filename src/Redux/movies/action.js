@@ -12,7 +12,7 @@ const getMovies = (sort, key) => {
             axios.get(url)
                 .then((res) => {
                     console.log('data Action', res.data.results);
-                    return dispatch(movieData({ [key]: res.data.results, loading: false }))
+                    return dispatch(movieData({ [key]: res.data.results, loading: false, type: 'movie' }))
                 })
         } catch (error) {
             console.log('axios-error', error)

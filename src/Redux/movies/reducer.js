@@ -2,7 +2,8 @@ import { GET_MOVIE_DATA } from "./actionType"
 
 const initialState = {
     loading: false,
-    error: false
+    error: false,
+    type: ""
 }
 
 const movieReducer = (state = { ...initialState }, { type, payload }) => {
