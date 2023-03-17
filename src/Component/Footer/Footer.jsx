@@ -25,8 +25,7 @@ function Footer(props) {
       w="90%"
       margin={"auto"}
       fontSize="14px"
-      opacity={0.9}
-    >
+      opacity={0.9}>
       <Box>
         <Flex w="80%" justifyContent={"space-between"} marginBottom="10PX">
           <Text>About Disney+ Hotstar</Text>

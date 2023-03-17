@@ -1,11 +1,14 @@
 import axios from "axios"
 import { GET_MOVIE_DATA } from "./actionType";
 
-const getMovies = ({ sort, key }) => {
+const getMovies = ({ sort, key, language }) => {
     return (dispatch) => {
-        let url = `https://api.themoviedb.org/3/discover/movie?api_key=939cb94eb1470cd3b74b2ec575a26449&language=en-US&include_adult=false&include_video=false&page=1&sort_by=popularity.desc`;
+        let url = `https://api.themoviedb.org/3/discover/movie?api_key=939cb94eb1470cd3b74b2ec575a26449&language=en-US&include_adult=false&include_video=false&page=1`;
         if (sort) {
             url += `&sort_by=${sort}`
+        }
+        if (language) {
+            url += `&with_original_language=${language}`
         }
         try {
             dispatch(movieData({ loading: true }))
