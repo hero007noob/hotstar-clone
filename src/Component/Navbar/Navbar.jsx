@@ -126,7 +126,12 @@ const Navbar = () => {
             </Box>
             <Divider opacity={0.3} />
             <DrawerBody>
-              <Flex color={"white"} opacity={0.8} margin="40px 0">
+              <Flex
+                onClick={onClose}
+                color={"white"}
+                opacity={0.8}
+                margin="40px 0"
+              >
                 <Image
                   boxSize="1.4rem"
                   src="https://lh3.ggpht.com/MPndj4KtVlLgFC1IC2BE6e2Gbx_ylMCnWnbIUduAMhmQ3KZowrQtHq_BgaPGsH6onwrP=w1200-h630-p-k-no-nu"
@@ -136,7 +141,12 @@ const Navbar = () => {
                 <span>Channels</span>
               </Flex>
               <Link to={"/language"}>
-                <Flex color={"white"} opacity={0.8} margin="40px 0">
+                <Flex
+                  onClick={onClose}
+                  color={"white"}
+                  opacity={0.8}
+                  margin="40px 0"
+                >
                   <Image
                     boxSize="1.4rem"
                     src="https://ec.europa.eu/eurostat/cros/profiles/multisite_drupal_standard/modules/features/nexteuropa_multilingual/theme/language-icon.png"
