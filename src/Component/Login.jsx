@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-
+import { RxCaretRight } from "react-icons/rx";
 // const style={
 //     // backgroundImage:("../Images/login-background.jpg")
 // }
@@ -61,9 +61,8 @@ function Login() {
             minWidth="max-content"
             justify="space-between"
             alignItems="center"
-            gap="2"
-          >
-            <Box p="2" mx="20px">
+            gap="2">
+            <Box p="2" mx="20px" zIndex={3}>
               <img
                 width="120px"
                 height="25px"
@@ -80,8 +79,7 @@ function Login() {
                 width={["80px", "150px"]}
                 height="30px"
                 fontSize="12px"
-                color="white"
-              >
+                color="white">
                 <option value="option2" className="select-tags">
                   हिंदी
                 </option>
@@ -97,8 +95,7 @@ function Login() {
                   height="30px"
                   fontSize="12px"
                   color="white"
-                  onChange={(e) => handleUSer(e)}
-                >
+                  onChange={(e) => handleUSer(e)}>
                   <option value="option1" className="select-tags">
                     Watchlist
                   </option>
@@ -116,8 +113,7 @@ function Login() {
                   borderRadius="2px"
                   width="82px"
                   height="30px"
-                  fontSize="12px"
-                >
+                  fontSize="12px">
                   Log in
                 </Button>
               )}
@@ -131,115 +127,134 @@ function Login() {
 
         <Box className="login-body">
           <Heading
-            fontWeight={["10px", "15px", "20px"]}
-            fontSize={["15px", "20px", "27px"]}
-          >
+            fontSize={["15px", "20px", "24px"]}
+            mb={"20px"}
+            fontWeight="normal">
             Subscribe to watch all content on Disney+ Hotstar
           </Heading>
           {/* -------------------subscription box-------------- */}
           <Box
             className="subscription-box"
-            height={["400px", "500px"]}
-            w={["90%", "85%", "60%"]}
-            my="20px"
-          >
+            // height={["400px", "500px"]}
+            // w={["90%", "85%", "60%"]}
+            my="20px">
             <Grid
               marginTop="10px"
               h="95%"
               templateRows="repeat(12, 1fr)"
               templateColumns="repeat(6, 1fr)"
-              gap={4}
-            >
+              gap={4}>
               <GridItem rowSpan={8} colSpan={6} p="8px" display="flex">
                 {/* subscription top box */}
-                <GridItem w="60%" colSpan={4}>
+                <GridItem w="60%" colSpan={4} paddingY="15px">
                   <Box
                     w={"100%"}
                     marginLeft={["", ""]}
-                    marginTop={["25", "35px"]}
-                    fontSize={["11px", "13px", "12px", "15px"]}
-                    color="#E2E8F0"
-                  >
-                    <Box p={["5px"]} border="1px solid #1A365D">
+                    marginTop={["25", "20px"]}
+                    textAlign="left"
+                    fontSize={["8px", "9px", "16px"]}
+                    fontWeight="500"
+                    lineHeight={2.0}
+                    color="B3B4BA">
+                    <Box
+                      p={["5px"]}
+                      borderBottom="1px solid rgba(46,51,51,0.4)">
                       <Box my={["5px", "10px"]}>
                         All content <br />
                       </Box>
                       <Box
                         mt="-10px"
-                        color="#3182CE"
-                        fontSize={["7px", "10px", "12px"]}
-                      >
+                        color="#1f80e0"
+                        fontSize={["7px", "10px", "12px"]}>
                         Movies, live sports, TV, Specialst
                       </Box>
                     </Box>
-                    <Box border="1px solid #1A365D" p={["4px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["4px", "5px"]}>
                       Watch on TV or Laptop
                     </Box>
-                    <Box border="1px solid #1A365D" p={["4px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["4px", "5px"]}>
                       Ads free movies and shows (except sports)
                     </Box>
-                    <Box border="1px solid #1A365D" p={["4px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["4px", "5px"]}>
                       Number of devices that can be logged in
                     </Box>
-                    <Box border="1px solid #1A365D" p={["4px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["4px", "5px"]}>
                       Max video quality
                     </Box>
-                    <Box border="1px solid #1A365D" p={["4px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["4px", "5px"]}>
                       Max audio quality
                     </Box>
                   </Box>
                 </GridItem>
                 <GridItem
                   textAlign="center"
+                  borderRadius={"5px"}
+                  paddingY="15px"
                   w="20%"
                   colSpan={2}
-                  bg={selectedplan === "SUPER" ? "#1A365D" : ""}
-                >
+                  lineHeight={2.0}
+                  bg={selectedplan === "SUPER" ? "#1e2a48" : ""}>
                   <Box
                     fontSize={["12px", "14px", "16px"]}
-                    color={selectedplan === "SUPER" ? "yellow" : "white"}
-                  >
+                    fontWeight="bold"
+                    color={
+                      selectedplan === "SUPER" ? "#fedf7b" : "rgb(162,166,172)"
+                    }>
                     <p>Super</p>
                   </Box>
                   <Box
                     w={"100%"}
                     marginTop={["8px", "15px", "12px"]}
-                    fontSize={["11px", "13px", "12px", "15px"]}
-                    color={selectedplan === "SUPER" ? "white" : "#E2E8F0"}
-                  >
-                    <Box p={["5px"]} border="1px solid #1A365D">
+                    fontSize={["8px", "9px", "16px"]}
+                    color={
+                      selectedplan === "SUPER" ? "white" : "rgb(162,166,172)"
+                    }>
+                    <Box
+                      p={["5px"]}
+                      borderBottom="1px solid rgba(46,51,51,0.4)">
                       <Box my={["5px", "10px"]}>
                         <CheckIcon /> <br />
                       </Box>
                       <Box
                         mt="-10px"
                         color="#3182CE"
-                        fontSize={["7px", "10px", "12px"]}
-                      >
-                        &nbsp;
-                      </Box>
+                        fontSize={["7px", "10px", "12px"]}></Box>
                     </Box>
-                    <Box border="1px solid #1A365D" p={["4px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["4px", "5px"]}>
                       <CheckIcon />
                     </Box>
-                    <Box border="1px solid #1A365D" p={["12px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["12px", "5px"]}>
                       <CloseIcon />
                     </Box>
-                    <Box border="1px solid #1A365D" p={["12px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["12px", "5px"]}>
                       2
                     </Box>
                     <Box
-                      border="1px solid #1A365D"
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["8px", "9px", "12px"]}
-                    >
+                      fontSize={["8px", "9px", "16px"]}>
                       Full HD(1080p)
                     </Box>
                     <Box
-                      border="1px solid #1A365D"
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["8px", "9px", "12px"]}
-                    >
+                      fontSize={["8px", "9px", "16px"]}>
                       Dolby 5.1
                     </Box>
                   </Box>
@@ -248,62 +263,66 @@ function Login() {
                 <GridItem
                   w="20%"
                   textAlign="center"
+                  borderRadius={"5px"}
                   colSpan={2}
+                  paddingY="15px"
+                  lineHeight={2.0}
                   bg={
                     selectedplan === "PREMIUM" || selectedplan === "PREMIUM1"
-                      ? "#1A365D"
+                      ? "#1e2a48"
                       : ""
-                  }
-                >
+                  }>
                   <Box
                     fontSize={["12px", "14px", "16px"]}
+                    fontWeight="bold"
                     color={
                       selectedplan === "PREMIUM1" || selectedplan === "PREMIUM"
-                        ? "yellow"
-                        : "white"
-                    }
-                  >
+                        ? "#fedf7b"
+                        : "rgb(162,166,172)"
+                    }>
                     <p>Premium</p>
                   </Box>
                   <Box
                     w={"100%"}
                     marginTop={["8px", "15px", "12px"]}
-                    fontSize={["11px", "13px", "12px", "15px"]}
-                    color={selectedplan === "SUPER" ? "#E2E8F0" : "white"}
-                  >
-                    <Box p={["5px"]} border="1px solid #1A365D">
+                    fontSize={["8px", "9px", "16px"]}
+                    color={selectedplan === "SUPER" ? "#E2E8F0" : "white"}>
+                    <Box
+                      p={["5px"]}
+                      borderBottom="1px solid rgba(46,51,51,0.4)">
                       <Box my={["5px", "10px"]}>
                         <CheckIcon /> <br />
                       </Box>
                       <Box
                         mt="-10px"
                         color="#3182CE"
-                        fontSize={["7px", "10px", "12px"]}
-                      >
-                        &nbsp;
-                      </Box>
+                        fontSize={["7px", "10px", "12px"]}></Box>
                     </Box>
-                    <Box border="1px solid #1A365D" p={["4px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["4px", "5px"]}>
                       <CheckIcon />
                     </Box>
-                    <Box border="1px solid #1A365D" p={["12px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["12px", "5px"]}>
                       <CheckIcon />
                     </Box>
-                    <Box border="1px solid #1A365D" p={["12px", "5px"]}>
+                    <Box
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
+                      p={["12px", "5px"]}>
                       4
                     </Box>
                     <Box
-                      border="1px solid #1A365D"
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["10px", "9px", "12px"]}
-                    >
+                      fontSize={["10px", "9px", "12px"]}>
                       4K (2160P)
                     </Box>
                     <Box
-                      border="1px solid #1A365D"
+                      borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["10px", "9px", "12px"]}
-                    >
+                      fontSize={["10px", "9px", "12px"]}>
                       Dolby 5.1
                     </Box>
                   </Box>
@@ -326,20 +345,23 @@ function Login() {
                   colorScheme="teal"
                   variant="outline"
                   borderColor={selectedplan === "SUPER" ? "#1f80e0" : "initial"}
-                  _hover={{ backgroundColor: "transparen" }}
-                  _active={{ backgroundColor: "transparen" }}
+                  _hover={{ backgroundColor: "transparent" }}
+                  _active={{ backgroundColor: "transparent" }}
                   bg={
                     selectedplan === "SUPER"
                       ? "rgba(31,128,224,0.4)"
                       : "transparent"
-                  }
-                >
+                  }>
                   <Flex
                     direction="column"
                     justifyContent="left"
-                    textAlign="left"
-                  >
-                    <Text color={"yellow"}>Super</Text>
+                    textAlign="left">
+                    <Text
+                      color={selectedplan === "SUPER" ? "#fedf7b" : "#D1D0D4"}
+                      fontSize={"18px"}
+                      fontWeight={"bold"}>
+                      Super
+                    </Text>
                     <Text>₹899/Year</Text>
                     {selectedplan === "SUPER" ? (
                       <Box className="checkbox-icon">
@@ -367,21 +389,24 @@ function Login() {
                   borderColor={
                     selectedplan === "PREMIUM" ? "#1f80e0" : "initial"
                   }
-                  _hover={{ backgroundColor: "transparen" }}
-                  _active={{ backgroundColor: "transparen" }}
+                  _hover={{ backgroundColor: "transparent" }}
+                  _active={{ backgroundColor: "transparent" }}
                   bg={
                     selectedplan === "PREMIUM"
                       ? "rgba(31,128,224,0.4)"
                       : "transparent"
-                  }
-                >
+                  }>
                   <Flex
                     direction="column"
                     justifyContent="left"
-                    textAlign="left"
-                  >
-                    <Text color={"yellow"}>Premium</Text>
-                    <Text>₹899/Year</Text>
+                    textAlign="left">
+                    <Text
+                      color={selectedplan === "PREMIUM" ? "#fedf7b" : "#D1D0D4"}
+                      fontSize={"18px"}
+                      fontWeight={"bold"}>
+                      Premium
+                    </Text>
+                    <Text>₹1499/Year</Text>
                     {selectedplan === "PREMIUM" ? (
                       <Box className="checkbox-icon">
                         <CheckIcon />
@@ -408,21 +433,26 @@ function Login() {
                   borderColor={
                     selectedplan === "PREMIUM1" ? "#1f80e0" : "initial"
                   }
-                  _hover={{ backgroundColor: "transparen" }}
-                  _active={{ backgroundColor: "transparen" }}
+                  _hover={{ backgroundColor: "transparent" }}
+                  _active={{ backgroundColor: "transparent" }}
                   bg={
                     selectedplan === "PREMIUM1"
                       ? "rgba(31,128,224,0.4)"
                       : "transparent"
-                  }
-                >
+                  }>
                   <Flex
                     direction="column"
                     justifyContent="left"
-                    textAlign="left"
-                  >
-                    <Text color={"yellow"}>Premium</Text>
-                    <Text>₹899/Year</Text>
+                    textAlign="left">
+                    <Text
+                      color={
+                        selectedplan === "PREMIUM1" ? "#fedf7b" : "#D1D0D4"
+                      }
+                      fontSize={"18px"}
+                      fontWeight={"bold"}>
+                      Premium
+                    </Text>
+                    <Text>₹299/Month</Text>
                     {selectedplan === "PREMIUM1" ? (
                       <Box className="checkbox-icon">
                         <CheckIcon />
@@ -436,21 +466,31 @@ function Login() {
 
               {/* subscription proceed to pay box */}
               <GridItem rowSpan={2} colSpan={6}>
-                {isAuth === false ? (
+                {isAuth == false ? (
                   <Button
                     onClick={onOpen}
                     my="8px"
-                    h="95%"
+                    h="75%"
                     w="95%"
                     colorScheme="blue"
-                  >
+                    _hover={{ backgroundColor: "#1E80E1" }}
+                    bg={"#1E80E1"}>
                     CONTINUE WITH{" "}
-                    {selectedplan === "SUPER" ? "SUPER" : "PREMIUM"}{" "}
+                    {selectedplan === "SUPER" ? "SUPER" : "PREMIUM"} &nbsp;
+                    <RxCaretRight size={"22px"} />
                   </Button>
                 ) : (
-                  <Button my="8px" h="95%" w="95%" colorScheme="blue">
+                  <Button
+                    onClick={onOpen}
+                    my="8px"
+                    h="75%"
+                    w="95%"
+                    colorScheme="blue"
+                    _hover={{ backgroundColor: "#1E80E1" }}
+                    bg={"#1E80E1"}>
                     CONTINUE WITH{" "}
-                    {selectedplan === "SUPER" ? "SUPER" : "PREMIUM"}{" "}
+                    {selectedplan === "SUPER" ? "SUPER" : "PREMIUM"} &nbsp;
+                    <RxCaretRight size={"22px"} />
                   </Button>
                 )}
               </GridItem>
