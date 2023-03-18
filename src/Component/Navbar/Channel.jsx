@@ -94,7 +94,7 @@ function Channel() {
   return (
     <Box marginTop="100px">
       <Text
-        fontSize={"20px"}
+        fontSize={{ md: "20px", lg: "25px" }}
         fontWeight="bold"
         color={"white"}
         w="90%"
