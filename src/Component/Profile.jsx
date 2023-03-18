@@ -1,8 +1,15 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import Login from "./Login";
+import { Logoutfun } from "../Redux/loginredux/action";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Profile(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <Box width={"500px"} margin="150px auto" color="white">
       <Box>
@@ -68,7 +75,16 @@ function Profile(props) {
           <ChevronRightIcon fontSize="35px" opacity={0.6} />
         </Flex>
       </Box>
-      <Box bg="#192133" p="20px" mb="1px">
+      <Box
+        bg="#192133"
+        p="20px"
+        mb="1px"
+        cursor="pointer"
+        onClick={() => {
+          dispatch(Logoutfun());
+          navigate("/");
+        }}
+      >
         <Flex margin="auto" justifyContent="space-between">
           <Text fontSize="20px">Log Out</Text>
           <ChevronRightIcon fontSize="35px" opacity={0.6} />

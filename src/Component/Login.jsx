@@ -97,6 +97,8 @@ function Login() {
     navigate("/payment");
   };
 
+  const ph = JSON.parse(localStorage.getItem("userdetails"));
+
   return (
     <Box w="100%">
       <Box className="slide-background"></Box>
@@ -150,7 +152,9 @@ function Login() {
                   color="white"
                   onChange={(e) => handleUSer(e)}
                 >
-                  <option value="" className="select-tags"></option>
+                  <option value="" className="select-tags">
+                    {ph.phone}
+                  </option>
                   <option value="option1" className="select-tags">
                     Watchlist
                   </option>

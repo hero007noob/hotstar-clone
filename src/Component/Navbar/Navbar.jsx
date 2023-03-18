@@ -32,8 +32,9 @@ import Tv from "./tv";
 import Movies from "./Movies";
 import Sports from "./Sports";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FiPause } from "react-icons/fi";
+import { Logoutfun } from "../../Redux/loginredux/action";
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -43,6 +44,7 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isAuth = useSelector((state) => state.loginReducer.Auth);
   const btnRef = useRef();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleClick = () => {
     setInputWidth("300px");
@@ -339,7 +341,7 @@ const Navbar = () => {
       )}
 
       <Flex w={"100px"} justifyContent="center">
-        {!isAuth ? (
+        {isAuth ? (
           <Menu isOpen={isProfileOpen}>
             <MenuButton
               onMouseEnter={handleProfileMouseEnter}
@@ -398,6 +400,9 @@ const Navbar = () => {
                 fontSize="15px"
                 color="white"
                 _hover={{ bg: "#0c111b", opacity: "1" }}
+                onClick={() => {
+                  dispatch(Logoutfun());
+                }}
               >
                 Log Out
               </MenuItem>
