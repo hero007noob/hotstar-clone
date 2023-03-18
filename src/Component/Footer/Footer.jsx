@@ -1,5 +1,7 @@
 import React from "react";
 import { Box, Flex, Text, Grid, Image } from "@chakra-ui/react";
+import googleImg from "../../images/SocialMediaImg/googlePlay.png";
+import appImg from "../../images/SocialMediaImg/AppStore.png";
 
 function Footer(props) {
   return (
@@ -82,7 +84,7 @@ function Footer(props) {
               gap="10px"
             >
               <Image
-                src="./SocialMediaImg/googlePlay.png"
+                src={googleImg}
                 alt="googlePlay"
                 height="40px"
                 width="130px"
@@ -91,7 +93,7 @@ function Footer(props) {
                 _hover={{ bg: "#1f80e0" }}
               />
               <Image
-                src="./SocialMediaImg/AppStore.png"
+                src={appImg}
                 alt="AppStore"
                 height="40px"
                 width="130px"
