@@ -24,6 +24,7 @@ function Footer(props) {
       gap="20px"
       w="90%"
       margin={"auto"}
+      marginTop="100px"
       fontSize="14px"
       opacity={0.9}
     >
@@ -34,11 +35,11 @@ function Footer(props) {
           marginBottom="10PX"
           flexWrap={"wrap"}
         >
-          <Text>About Disney+ Hotstar</Text>
-          <Text>Terms Of Use</Text>
-          <Text>Privacy Policy</Text>
-          <Text>FAQ</Text>
-          <Text>Feedback</Text>
+          <Text marginRight="10px">About Disney+ Hotstar</Text>
+          <Text marginRight="10px">Terms Of Use</Text>
+          <Text marginRight="10px">Privacy Policy</Text>
+          <Text marginRight="10px">FAQ</Text>
+          <Text marginRight="10px">Feedback</Text>
           <Text>Careers</Text>
         </Flex>
         <Box>

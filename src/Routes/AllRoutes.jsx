@@ -12,6 +12,8 @@ import Login from "../Component/Login";
 import Paymentpage from "../Component/Paymentpage";
 import CardDetails from "../Component/CardDetails";
 import WishList from "../Component/WishList";
+import RegionalLanguage from "../Component/Navbar/RegionalLanguage";
+import Channel from "../Component/Navbar/Channel";
 
 function AllRoutes() {
   const routes = [
@@ -21,6 +23,16 @@ function AllRoutes() {
         <>
           <Navbar />
           <Language />,
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/language/lang/:ln",
+      element: (
+        <>
+          <Navbar />
+          <RegionalLanguage />,
           <Footer />
         </>
       ),
@@ -90,6 +102,16 @@ function AllRoutes() {
         <>
           <Navbar />
           <Genre />,
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/channels",
+      element: (
+        <>
+          <Navbar />
+          <Channel />
           <Footer />
         </>
       ),
