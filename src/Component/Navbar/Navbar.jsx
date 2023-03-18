@@ -39,6 +39,7 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [inputWidth, setInputWidth] = useState("200px");
   const [isOpenMenu, setIsOpen] = useState(false);
+  const [isProfileOpen, setProfileOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isAuth = useSelector((state) => state.loginReducer.Auth);
   const btnRef = useRef();
@@ -57,6 +58,14 @@ const Navbar = () => {
 
   const handleMouseLeave = () => {
     setIsOpen(false);
+  };
+
+  const handleProfileMouseEnter = () => {
+    setProfileOpen(!isOpenMenu);
+  };
+
+  const handleProfileMouseLeave = () => {
+    setProfileOpen(false);
   };
 
   return (
@@ -180,27 +189,9 @@ const Navbar = () => {
                 </Flex>
               </Link>
             </DrawerBody>
-
-            {/* <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button colorScheme="blue">Save</Button>
-            </DrawerFooter> */}
           </DrawerContent>
         </Drawer>
-        {/* <MenuButton
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <IconButton
-            aria-label="Menu"
-            icon={<HamburgerIcon />}
-            size="lg"
-            variant="ghost"
-            mr="4"
-          />
-        </MenuButton> */}
+
         <MenuList
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -292,6 +283,10 @@ const Navbar = () => {
         fontSize={{ base: "md", md: "lg" }}
         mr={{ base: "0", md: "6" }}
         className={navStyles.disneyPlus}
+        cursor="pointer"
+        onClick={() => {
+          navigate("/");
+        }}
       >
         Disney+
       </Text>
@@ -344,23 +339,70 @@ const Navbar = () => {
       )}
 
       <Flex w={"100px"} justifyContent="center">
-        {isAuth ? (
-          <IconButton
-            borderRadius={"50%"}
-            backgroundColor="transparent"
-            bg={"transparent"}
-            _hover={{ cursor: "pointer" }}
-            _active={{}}
-            onClick={() => {
-              navigate("/profile");
-            }}
-            icon={
-              <Image
-                backgroundColor={"transparent"}
-                src="https://www.hotstar.com/assets/c724e71754181298e3f835e46ade0517.svg"
-              />
-            }
-          />
+        {!isAuth ? (
+          <Menu isOpen={isProfileOpen}>
+            <MenuButton
+              onMouseEnter={handleProfileMouseEnter}
+              onMouseLeave={handleProfileMouseLeave}
+              borderRadius={"50%"}
+              as={IconButton}
+              backgroundColor="transparent"
+              bg={"transparent"}
+              _hover={{}}
+              _active={{}}
+              onClick={() => {
+                navigate("/profile");
+              }}
+              icon={
+                <Image
+                  backgroundColor={"transparent"}
+                  src="https://www.hotstar.com/assets/c724e71754181298e3f835e46ade0517.svg"
+                />
+              }
+            />
+            <MenuList
+              onMouseEnter={handleProfileMouseEnter}
+              onMouseLeave={handleProfileMouseLeave}
+              bg="#192133"
+              border="none"
+              minW="100px"
+              borderRadius="5px"
+            >
+              <MenuItem
+                bg="#192133"
+                opacity="0.9"
+                fontSize="15px"
+                color="white"
+                _hover={{ bg: "#0c111b", opacity: "1" }}
+                onClick={() => {
+                  navigate("/wishlist");
+                }}
+              >
+                Watchlist
+              </MenuItem>
+              <MenuItem
+                bg="#192133"
+                opacity="0.9"
+                fontSize="15px"
+                color="white"
+                _hover={{ bg: "#0c111b", opacity: "1" }}
+                onClick={() => {
+                  navigate("/profile");
+                }}
+              >
+                My Account
+              </MenuItem>
+              <MenuItem
+                bg="#192133"
+                opacity="0.9"
+                fontSize="15px"
+                color="white"
+                _hover={{ bg: "#0c111b", opacity: "1" }}
+              >
+                Log Out
+              </MenuItem>
+            </MenuList>
+          </Menu>
         ) : (
           <Button
             bg="none"
