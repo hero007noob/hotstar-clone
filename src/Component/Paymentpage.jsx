@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 function Paymentpage() {
   const navigate = useNavigate();
+  const planName = JSON.parse(localStorage.getItem("subscription"));
+
   return (
     <div className="payment-body">
       <div className="Payment-page">
@@ -11,9 +13,9 @@ function Paymentpage() {
           src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Disney%2B_Hotstar_logo.svg"
           alt="logo"
         />
-        <h2 className="payment-about-plan">Super Plan</h2>
+        <h2 className="payment-about-plan">{planName.plan}</h2>
         <div className="payment-page-top-text">
-          <p> You're paying ₹899 for this transaction.</p>
+          <p> You're paying {planName.price} for this transaction.</p>
           <p>
             Get access to all content - Live Sports, Movies, TV. Watch on any 2
             devices at FHD (1080p) resolution.

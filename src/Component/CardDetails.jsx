@@ -1,13 +1,14 @@
 import React from "react";
 import { Textarea, HStack, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { planforsubs } from "../Redux/loginredux/action";
 
 function CardDetails() {
   const navigate = useNavigate();
 
   const afterPayment = () => {
-    console.log("Alert");
     alert("Payment Successfull");
+    planforsubs();
     navigate("/");
   };
   return (

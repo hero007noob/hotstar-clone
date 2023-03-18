@@ -24,7 +24,7 @@ import {
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { RxCaretRight } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
-import { checkLogin, getAuth } from "../Redux/loginredux/action";
+import { checkLogin, getAuth, Logoutfun } from "../Redux/loginredux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { changeISAuthLogin } from "../Redux/loginredux/action";
 import axios from "axios";
@@ -59,14 +59,42 @@ function Login() {
 
   const handleUSer = (e) => {
     const val = e.target.value;
-    console.log(val);
+
     if (val === "option3") {
       handleLogout();
+    } else if (val === "option2") {
+      navigate("/profile");
+    } else if (val === "option1") {
+      navigate("/wishlist");
     }
   };
 
   const handleLogout = () => {
     // setAuth(false);
+    dispatch(Logoutfun());
+  };
+
+  const saveSubscription = () => {
+    if (selectedplan === "SUPER") {
+      let plan = {
+        plan: "SUPER",
+        price: "₹899/Year",
+      };
+      localStorage.setItem("subscription", JSON.stringify(plan));
+    } else if (selectedplan === "PREMIUM") {
+      let plan = {
+        plan: "PREMIUM",
+        price: "₹1499/Year",
+      };
+      localStorage.setItem("subscription", JSON.stringify(plan));
+    } else if (selectedplan === "PREMIUM1") {
+      let plan = {
+        plan: "PREMIUM",
+        price: "₹299/Year",
+      };
+      localStorage.setItem("subscription", JSON.stringify(plan));
+    }
+    navigate("/payment");
   };
 
   return (
@@ -80,7 +108,13 @@ function Login() {
             alignItems="center"
             gap="2"
           >
-            <Box p="2" mx="20px" zIndex={3}>
+            <Box
+              p="2"
+              mx="20px"
+              zIndex={3}
+              onClick={() => navigate("/")}
+              cursor="pointer"
+            >
               <img
                 width="120px"
                 height="25px"
@@ -116,6 +150,7 @@ function Login() {
                   color="white"
                   onChange={(e) => handleUSer(e)}
                 >
+                  <option value="" className="select-tags"></option>
                   <option value="option1" className="select-tags">
                     Watchlist
                   </option>
@@ -151,7 +186,6 @@ function Login() {
             fontSize={["15px", "20px", "24px"]}
             mb={"20px"}
             fontWeight="normal"
-            color={isAuth ? "green" : "red"}
           >
             Subscribe to watch all content on Disney+ Hotstar
           </Heading>
@@ -544,7 +578,9 @@ function Login() {
                   </Button>
                 ) : (
                   <Button
-                    onClick={() => navigate("/payment")}
+                    onClick={() => {
+                      saveSubscription();
+                    }}
                     my="8px"
                     h="75%"
                     w="95%"
