@@ -99,25 +99,6 @@
     },
     {
       "adult": false,
-      "backdrop_path": null,
-      "genre_ids": [
-        16,
-        14
-      ],
-      "id": 980432,
-      "original_language": "en",
-      "original_title": "Untitled Fire Lord Zuko Project",
-      "overview": "A spin-off of the animated series Avatar: The Last Airbender. Plot unknown.",
-      "popularity": 1.132,
-      "poster_path": "/21b0i0Ozc2o9YNsVyEf4iyYNt5r.jpg",
-      "release_date": "2026-10-09",
-      "title": "Untitled Fire Lord Zuko Project",
-      "video": false,
-      "vote_average": 0,
-      "vote_count": 0
-    },
-    {
-      "adult": false,
       "backdrop_path": "/jr8tSoJGj33XLgFBy6lmZhpGQNu.jpg",
       "genre_ids": [
         16,
@@ -136,6 +117,64 @@
       "video": false,
       "vote_average": 8.4,
       "vote_count": 4646
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ela0vO7QFFTuQdUatbwD4S6qMCX.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1014060,
+      "original_language": "hi",
+      "original_title": "Zwigato",
+      "overview": "Set in Bhubaneshwar, Odisha the film is a sociopolitical gaze on the gig economy, from the perspective of a food-app delivery driver and his trials and tribulations.",
+      "popularity": 35.867,
+      "poster_path": "/cy5prmLqNUVOqfEqa0ArhqIRDB1.jpg",
+      "release_date": "2023-03-17",
+      "title": "Zwigato",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7w06baRS9VPm5RYz8lawTCLiR4j.jpg",
+      "genre_ids": [
+        28,
+        80,
+        53
+      ],
+      "id": 592508,
+      "original_language": "hi",
+      "original_title": "Sooryavanshi",
+      "overview": "A fearless, faithful albeit slightly forgetful Mumbai cop, Veer Sooryavanshi, the chief of the Anti-Terrorism Squad in India pulls out all the stops and stunts to thwart a major conspiracy to attack his city.",
+      "popularity": 37.635,
+      "poster_path": "/8p3mhjyLjHKtaAv8tFKfvEBtir0.jpg",
+      "release_date": "2021-11-05",
+      "title": "Sooryavanshi",
+      "video": false,
+      "vote_average": 5.8,
+      "vote_count": 133
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kQM7o3NIkruIZLoQ9E2XzZQ8Ujl.jpg",
+      "genre_ids": [
+        28,
+        35,
+        80
+      ],
+      "id": 783461,
+      "original_language": "hi",
+      "original_title": "लूप लपेटा",
+      "overview": "When her boyfriend loses a mobster's cash, Savi races against the clock to save the day — if only she can break out of a curious cycle of dead ends.",
+      "popularity": 38.469,
+      "poster_path": "/onGdT8sYi89drvSJyEJnft97rOq.jpg",
+      "release_date": "2022-02-04",
+      "title": "Looop Lapeta",
+      "video": false,
+      "vote_average": 6.3,
+      "vote_count": 53
     }
   ]
 }
