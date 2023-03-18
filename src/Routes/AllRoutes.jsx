@@ -7,6 +7,11 @@ import Genre from "../Component/Genre";
 import Filtered from "../Component/Filtered";
 import Play from "../Component/Play";
 import Navbar from "../Component/Navbar/Navbar";
+import Footer from "../Component/Footer/Footer";
+import Login from "../Component/Login";
+import Paymentpage from "../Component/Paymentpage";
+import CardDetails from "../Component/CardDetails";
+import WishList from "../Component/WishList";
 
 function AllRoutes() {
   const routes = [
@@ -16,6 +21,46 @@ function AllRoutes() {
         <>
           <Navbar />
           <Language />,
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/wishlist",
+      element: (
+        <>
+          <Navbar />
+          <WishList />,
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/login",
+      element: (
+        <>
+          <Login />,
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/payment",
+      element: (
+        <>
+          <Navbar />
+          <Paymentpage />,
+          <Footer />
+        </>
+      ),
+    },
+    {
+      path: "/card",
+      element: (
+        <>
+          <Navbar />
+          <CardDetails />,
+          <Footer />
         </>
       ),
     },
@@ -25,6 +70,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Home />,
+          <Footer />
         </>
       ),
     },
@@ -34,6 +80,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <ProductDetail />,
+          <Footer />
         </>
       ),
     },
@@ -43,6 +90,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Genre />,
+          <Footer />
         </>
       ),
     },
@@ -52,6 +100,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Filtered />,
+          <Footer />
         </>
       ),
     },
@@ -61,6 +110,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Play />,
+          <Footer />
         </>
       ),
     },

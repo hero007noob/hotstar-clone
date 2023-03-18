@@ -67,16 +67,14 @@ function CardDetails() {
             style={{
               display: "flex",
               padding: "20px",
-            }}
-          >
+            }}>
             <input style={{ fontSize: "15px" }} type="checkbox" />
             <p
               style={{
                 fontSize: "10px",
                 textAlign: "left",
                 marginLeft: "15px",
-              }}
-            >
+              }}>
               I am over 18, and I agree to the above conditions and the{" "}
               <span style={{ color: "blue" }}>
                 Terms of Use and Privacy Policy
@@ -88,8 +86,7 @@ function CardDetails() {
             w={"95%"}
             p={"25px"}
             borderRadius="4px"
-            marginLeft="20px"
-          >
+            marginLeft="20px">
             START MEMBERSHIP
           </Button>
         </div>

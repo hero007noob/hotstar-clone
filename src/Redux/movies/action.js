@@ -40,6 +40,88 @@ const getSimilar = ({ id, key }) => {
         }
     }
 }
+const removeFromWishlist = async (id) => {
+
+    let config = {
+        method: 'delete',
+        maxBodyLength: Infinity,
+        url: `http://localhost:4000/wishlist/${id}`,
+        headers: {}
+    };
+
+    axios.request(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+}
+const addToWishlist = async (body) => {
+
+    let data = JSON.stringify(body);
+
+    let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: 'http://localhost:4000/wishlist',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    axios.request(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+}
+const getWishlistData = async (id) => {
+
+    return new Promise((resolve, reject) => {
+        let config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: 'http://localhost:4000/wishlist',
+            headers: {}
+        };
+
+        axios.request(config)
+            .then((response) => {
+                // console.log(JSON.stringify(response.data));
+                resolve(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    });
+}
+const checkWishlist = (id) => {
+    return new Promise((resolve, reject) => {
+        let config = {
+            method: 'get',
+            maxBodyLength: Infinity,
+            url: `http://localhost:4000/wishlist/${id}`,
+            headers: {}
+        };
+
+        axios.request(config)
+            .then((response) => {
+                // console.log(JSON.stringify(response.data));
+                resolve(true);
+            })
+            .catch((error) => {
+                console.log('not in wishlist');
+                resolve(false);
+            });
+    });
+}
 const movieData = (data) => {
     return {
         type: GET_MOVIE_DATA,
@@ -47,4 +129,4 @@ const movieData = (data) => {
     }
 }
 
-export { getMovies, getSimilar }
+export { getMovies, getSimilar, removeFromWishlist, addToWishlist, checkWishlist, getWishlistData }

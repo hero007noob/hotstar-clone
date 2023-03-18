@@ -1,3 +1,85 @@
 {
-  "login": []
+  "login": [],
+  "wishlist": [
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        28,
+        12,
+        14,
+        878
+      ],
+      "id": 393209,
+      "original_language": "en",
+      "original_title": "Avatar 5",
+      "overview": "",
+      "popularity": 33.649,
+      "poster_path": "/rtmmvqkIC5zDMEd638Es2woxbz8.jpg",
+      "release_date": "2028-12-20",
+      "title": "Avatar 5",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        878,
+        14
+      ],
+      "id": 760801,
+      "original_language": "en",
+      "original_title": "Untitled Star Wars Film",
+      "overview": "",
+      "popularity": 3.486,
+      "poster_path": "/60CVsdqOiZRHuobo35tIkaGGA5B.jpg",
+      "release_date": "2027-12-17",
+      "title": "Untitled Star Wars Film",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        28,
+        878,
+        12,
+        14
+      ],
+      "id": 216527,
+      "original_language": "en",
+      "original_title": "Avatar 4",
+      "overview": "",
+      "popularity": 42.101,
+      "poster_path": "/qzMYKnT4MG1d0gnhwytr4cKhUvS.jpg",
+      "release_date": "2026-12-16",
+      "title": "Avatar 4",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        16,
+        14
+      ],
+      "id": 980432,
+      "original_language": "en",
+      "original_title": "Untitled Fire Lord Zuko Project",
+      "overview": "A spin-off of the animated series Avatar: The Last Airbender. Plot unknown.",
+      "popularity": 1.132,
+      "poster_path": "/21b0i0Ozc2o9YNsVyEf4iyYNt5r.jpg",
+      "release_date": "2026-10-09",
+      "title": "Untitled Fire Lord Zuko Project",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    }
+  ]
 }
