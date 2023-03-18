@@ -49,8 +49,7 @@ function Profile(props) {
             padding="35px"
             bg="#1f80e0"
             variant="ghost"
-            _hover={{}}
-          >
+            _hover={{}}>
             GET DISNEY+ HOTSTAR PREMIUM <ChevronRightIcon fontSize="30px" />{" "}
           </Button>
         </Box>
