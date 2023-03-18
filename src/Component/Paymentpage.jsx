@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Paymentpage() {
+  const navigate = useNavigate();
   return (
     <div className="payment-body">
       <div className="Payment-page">
@@ -18,7 +20,7 @@ function Paymentpage() {
           </p>
         </div>
 
-        <div className="payment-card1">
+        <div onClick={() => navigate("/card")} className="payment-card1">
           <div>Credit card</div>
           <div>
             {" "}
@@ -30,7 +32,7 @@ function Paymentpage() {
           </div>
         </div>
 
-        <div className="payment-card">
+        <div onClick={() => navigate("/card")} className="payment-card">
           <div>Debit card</div>
           <div>
             {" "}
@@ -41,7 +43,7 @@ function Paymentpage() {
             />
           </div>
         </div>
-        <div className="payment-card">
+        <div onClick={() => navigate("/card")} className="payment-card">
           <div>Netbanking</div>
           <div>
             {" "}
@@ -54,7 +56,7 @@ function Paymentpage() {
           </div>
         </div>
 
-        <div className="payment-card">
+        <div onClick={() => navigate("/card")} className="payment-card">
           <div>Paytm</div>
           <div>
             {" "}
@@ -67,7 +69,7 @@ function Paymentpage() {
           </div>
         </div>
 
-        <div className="payment-card">
+        <div onClick={() => navigate("/card")} className="payment-card">
           <div>UPI</div>
           <div>
             {" "}
