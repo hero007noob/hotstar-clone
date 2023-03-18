@@ -34,9 +34,10 @@ function RegionalLanguage() {
         margin={"0 auto"}
         minH="500px"
       >
-        {movies.map((item) => {
-          return <HorizontalCard key={item.id} data={item} type={"movie"} />;
-        })}
+        {movies &&
+          movies.map((item) => {
+            return <HorizontalCard key={item.id} data={item} type={"movie"} />;
+          })}
       </Flex>
     </Box>
   );
