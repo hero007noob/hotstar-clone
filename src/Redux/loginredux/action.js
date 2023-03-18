@@ -1,5 +1,64 @@
 import axios from "axios";
 
+
+export const Logoutfun = () => {
+    return (dispatch) => {
+        localStorage.clear();
+
+
+        dispatch({
+            type: "login_now",
+            payload: {
+                Auth: false,
+                error: false,
+                user: {},
+
+            },
+
+        })
+
+
+    }
+
+}
+
+
+export const planforsubs = () => {
+    const plan = JSON.parse(localStorage.getItem("subscription"))
+    const idval = JSON.parse(localStorage.getItem("userdetails"))
+
+    const id = idval.id;
+
+
+    let data = JSON.stringify({
+        "package": plan,
+    });
+
+    let config = {
+        method: 'patch',
+        maxBodyLength: Infinity,
+        url: `http://localhost:4000/users/${id}`,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: data
+    };
+
+    axios.request(config)
+        .then((response) => {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+}
+
+
+
+
+
+
 export const getAuth = async ({ input }) => {
     return new Promise((resolve, reject) => {
 
@@ -49,7 +108,7 @@ const registeruser = async (inputNumber) => {
             .request(config)
             .then((response) => {
                 console.log(JSON.stringify(response.data));
-                localStorage.setItem("userdetails", data);
+                localStorage.setItem("userdetails", response.data);
                 localStorage.setItem("login", true);
                 console.log("user registered");
                 resolve();

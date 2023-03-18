@@ -10,7 +10,7 @@
       "id": 1,
       "phone": "1231231233",
       "name": "User",
-      "package": "base",
+      "package": "SUPER",
       "parentalLock": "false"
     },
     {
@@ -23,7 +23,10 @@
     {
       "phone": "123",
       "name": "User",
-      "package": "base",
+      "package": {
+        "plan": "SUPER",
+        "price": "₹899/Year"
+      },
       "parentalLock": "false",
       "id": 3
     },
