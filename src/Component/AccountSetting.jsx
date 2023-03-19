@@ -3,11 +3,11 @@ import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
-function AccountSetting(props) {
+function AccountSetting() {
   const navigate = useNavigate();
 
   return (
-    <Box bg="#f3f3f3" color="black" width="100%">
+    <Box bg="#f3f3f3" color="black" width="100%" position="fixed">
       <Box width="600px" height="100vh" margin="auto">
         <Box>
           <Image
@@ -48,6 +48,9 @@ function AccountSetting(props) {
           justifyContent="space-between"
           alignItems="center"
           cursor="pointer"
+          onClick={() => {
+            navigate("/account-settings/set-password");
+          }}
         >
           <Box>
             <Box fontWeight={500} fontSize={"20px"}>
