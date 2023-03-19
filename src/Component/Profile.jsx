@@ -10,6 +10,8 @@ function Profile(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { name, phone } = JSON.parse(localStorage.getItem("userdetails")) || [];
+
   return (
     <Box width={"500px"} margin="150px auto" color="white">
       <Box>
@@ -25,12 +27,12 @@ function Profile(props) {
         <Box textAlign="center">
           <Box margin={"10px"}>
             <Heading as={"h1"} fontSize="30px">
-              Simant Gautam
+              {name}
             </Heading>
           </Box>
           <Box>
             <Text fontSize="18px" opacity={0.8}>
-              Demo 123456789
+              +91 {phone}
             </Text>
           </Box>
         </Box>
