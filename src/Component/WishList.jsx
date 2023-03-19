@@ -2,9 +2,11 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
 import { getWishlistData } from "../Redux/movies/action";
 import HorizontalCard from "./Cards/HorizontalCard";
+import Loader from "./Loader";
 
 export default function WishList() {
   const [wishlist, setWishlist] = useState([]);
+  const [loading, setLoading] = useState(false);
   const getWishlist = async () => {
     let wishlistData = await getWishlistData();
     console.log("x", wishlistData);
@@ -15,11 +17,15 @@ export default function WishList() {
     return () => {};
   }, []);
   function handleChange() {
+    setLoading(true);
     setTimeout(() => {
       getWishlist();
-    }, 50);
+      setLoading(false);
+    }, 500);
   }
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <Box mt={"100px"}>
       <Text
         color={"white"}
