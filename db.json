@@ -1,4 +1,7 @@
 {
+  "devices": {
+    "count": 0
+  },
   "users": [
     {
       "id": 1,
@@ -23,6 +26,13 @@
       },
       "parentalLock": "false",
       "id": 3
+    },
+    {
+      "phone": "321",
+      "name": "User",
+      "package": "base",
+      "parentalLock": "false",
+      "id": 4
     }
   ],
   "continue": {

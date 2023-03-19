@@ -35,7 +35,11 @@ import axios from "axios";
 function Login() {
   const [selectedplan, setSelectedPlan] = useState("SUPER");
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const {
+    isOpen: isDeviceOpen,
+    onOpen: onDeviceOpen,
+    onClose: onDeviceClose,
+  } = useDisclosure();
   const isAuth = useSelector((state) => {
     return state.loginReducer.Auth;
   });
@@ -48,12 +52,18 @@ function Login() {
 
   useEffect(() => {
     console.log("effect", isAuth);
+    onDeviceOpen();
   }, [isAuth]);
 
   const handleSubmit = () => {
-    getAuth({ input: inputNumber }).then(() => {
-      dispatch(checkLogin());
-    });
+    getAuth({ input: inputNumber })
+      .then((x) => {
+        dispatch(checkLogin());
+      })
+      .catch((x) => {
+        console.log("should");
+        onDeviceOpen();
+      });
     onClose();
   };
 
@@ -101,6 +111,39 @@ function Login() {
 
   return (
     <Box w="100%">
+      <Modal isOpen={isDeviceOpen} onClose={onDeviceClose}>
+        <ModalOverlay />
+        <ModalContent
+          background={"linear-gradient(to bottom, #141b29, #0c111b 300px);"}
+          color="white">
+          {/* <ModalCloseButton /> */}
+          <ModalHeader display={"flex"} justifyContent={"center"}>
+            <Text>DeviceLimit Exceeded</Text>
+          </ModalHeader>
+          <ModalBody
+            padding={"30px"}
+            display={"flex"}
+            alignItems="center"
+            justifyContent={"center"}
+            fontSize={"16px"}
+            flexDirection="column"
+            textAlign="center">
+            <Text>Upgrade Plan To Continue Or</Text>
+            <Text fontSize={"12px"}>Or</Text>
+            <Text>Log Out from Other Devices</Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              colorScheme="blue"
+              onClick={onDeviceClose}
+              w="100%"
+              variant="outline">
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Box className="slide-background"></Box>
       <Box className="login-page">
         <Box className="dummy-header">
