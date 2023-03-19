@@ -19,9 +19,11 @@ import {
   ModalCloseButton,
   Grid,
   GridItem,
+  InputGroup,
+  InputLeftAddon,
 } from "@chakra-ui/react";
 
-import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import { CheckIcon, ChevronRightIcon, CloseIcon } from "@chakra-ui/icons";
 import { RxCaretRight } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { checkLogin, getAuth, Logoutfun } from "../Redux/loginredux/action";
@@ -64,6 +66,7 @@ function Login() {
         console.log("should");
         onDeviceOpen();
       });
+    setInputNumber("");
     onClose();
   };
 
@@ -602,36 +605,51 @@ function Login() {
           {/* ===================login with phone model==================== */}
           <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
             <ModalOverlay />
-            <ModalContent p={"25px"} backgroundColor="#192133" color={"white"}>
-              <ModalHeader>Login to continue</ModalHeader>
-              <ModalCloseButton />
+            <ModalContent
+              p={"25px"}
+              backgroundColor="#192133"
+              color={"white"}
+              padding="50px">
+              <ModalHeader fontSize="25px" fontWeight="400" mt={"80px"}>
+                Login to continue
+              </ModalHeader>
+              <ModalCloseButton size={"lg"} margin="20px" />
               <ModalBody pb={6}>
-                <input
-                  style={{
-                    background: "transparent",
-                    borderBottom: "white",
-                    height: "20px",
-                    width: "100%",
-                    marginTop: "25px",
-                    marginBottom: "25px",
-                    padding: "25px",
-                  }}
-                  placeholder="Enter your mobile number"
-                  onChange={(e) => setInputNumber(e.target.value)}
-                />
-
-                <input
-                  style={{
-                    background: "transparent",
-                    borderBottom: "white",
-                    height: "20px",
-                    width: "100%",
-                    marginTop: "25px",
-                    marginBottom: "25px",
-                    padding: "25px",
-                  }}
-                  placeholder="Enter your six digit password"
-                />
+                <Box
+                  border={"1px solid #1e75cc"}
+                  borderRadius="5px"
+                  p="10px"
+                  bg="#16273f"
+                  mt="40px"
+                  textAlign={"center"}>
+                  <Button
+                    fontSize="20px"
+                    _hover={{}}
+                    _active={{}}
+                    bg="transparant"
+                    color="#1e75cc">
+                    Have a Facebook/Email account ?
+                  </Button>
+                </Box>
+                <InputGroup mt="40px" position="relative">
+                  <InputLeftAddon
+                    position="absolute"
+                    left="-2"
+                    bottom={0.5}
+                    border={"none"}
+                    bg="transparent"
+                    children="+91 | "
+                    fontSize="20px"
+                  />
+                  <Input
+                    variant="flushed"
+                    pl="60px"
+                    fontSize="20px"
+                    placeholder="Enter your mobile number"
+                    _placeholder={{ fontSize: "20px" }}
+                    onChange={(e) => setInputNumber(e.target.value)}
+                  />
+                </InputGroup>
               </ModalBody>
 
               <ModalFooter justifyContent={"center"}>
@@ -639,8 +657,12 @@ function Login() {
                   onClick={handleSubmit}
                   colorScheme="blue"
                   mr={3}
-                  w="80%">
-                  Save
+                  w="100%"
+                  p={8}
+                  fontSize={18}
+                  isDisabled={inputNumber.length < 10}>
+                  CONTINUE
+                  <ChevronRightIcon fontSize={25} />
                 </Button>
               </ModalFooter>
             </ModalContent>

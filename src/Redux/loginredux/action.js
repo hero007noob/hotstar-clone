@@ -102,7 +102,7 @@ const registeruser = async (inputNumber) => {
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        localStorage.setItem("userdetails", response.data);
+        localStorage.setItem("userdetails", JSON.stringify(response.data));
         localStorage.setItem("login", true);
         console.log("user registered");
         resolve();
