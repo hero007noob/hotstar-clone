@@ -450,6 +450,7 @@ const Navbar = () => {
                 _hover={{ bg: "#0c111b", opacity: "1" }}
                 onClick={() => {
                   dispatch(Logoutfun());
+                  navigate("/");
                 }}
               >
                 Log Out

@@ -79,6 +79,7 @@ function Login() {
 
     if (val === "option3") {
       handleLogout();
+      setChangepin(false);
     } else if (val === "option2") {
       navigate("/profile");
     } else if (val === "option1") {

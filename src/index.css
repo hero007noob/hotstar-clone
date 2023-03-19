@@ -182,7 +182,7 @@ code {
 }
 
 .card-detail-page input[type="text"]:focus {
-  border: 3px solid #6ab5da;
+  /* border: 3px solid #6ab5da; */
 }
 .card-detail-page input[type="text"] {
   -webkit-transition: 0.5s;

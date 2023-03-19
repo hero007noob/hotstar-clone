@@ -83,8 +83,14 @@ const registeruser = async (inputNumber) => {
     let body = {
       phone: inputNumber,
       name: "User",
-      package: "base",
+      package: {
+        plan: "base",
+        price: "free"
+      },
       parentalLock: "false",
+
+
+
     };
     let data = JSON.stringify(body);
     console.log(data);
