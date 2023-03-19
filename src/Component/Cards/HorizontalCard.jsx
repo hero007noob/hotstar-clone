@@ -44,13 +44,11 @@ export default function HorizontalCard({ data, type, handleChange }) {
     <div style={{ padding: "10px", height: "200px", width: "300px" }}>
       <div
         className={styles.container}
-        style={{ height: "100%", marginTop: "20px" }}
-      >
+        style={{ height: "100%", marginTop: "20px" }}>
         <div
           className={styles.image_container}
           onClick={() => navigate(`/watch/${type}/${data.id}`)}
-          style={{ cursor: "pointer" }}
-        >
+          style={{ cursor: "pointer" }}>
           <Image
             borderRadius={"8px"}
             src={data.backdrop_path ? imagBaseUrl + data.backdrop_path : back}
@@ -61,15 +59,13 @@ export default function HorizontalCard({ data, type, handleChange }) {
         </div>
         <div
           className={styles.text_container}
-          style={{ textAlign: "left", padding: "0px 15px" }}
-        >
+          style={{ textAlign: "left", padding: "0px 15px" }}>
           <Text
             color={"white"}
             fontSize={"10px"}
             fontWeight={"600"}
             m="0"
-            noOfLines={1}
-          >
+            noOfLines={1}>
             {data.title || data.original_title}
           </Text>
           {/* <Text color={"#ffffff99"} fontSize={"8px"} fontWeight={"500"} m="0">
@@ -106,8 +102,7 @@ export default function HorizontalCard({ data, type, handleChange }) {
               toggle ? addWishlist(data) : removeWishlist(data.id);
               console.log("here", data.id);
               setToggle((tog) => !tog);
-            }}
-          >
+            }}>
             {toggle
               ? upperCase("Add to Watchlist")
               : upperCase("Remove from Watchlist")}

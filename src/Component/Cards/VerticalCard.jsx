@@ -24,8 +24,8 @@ export default function VerticalCard({ data, type }) {
   };
   const isWishlisted = async () => {
     let exist = await checkWishlist(data.id);
-    console.log("exist: ", exist);
-    console.log(exist ? "exist: oh yea " : "what");
+    // console.log("exist: ", exist);
+    // console.log(exist ? "exist: oh yea " : "what");
     if (exist) {
       setToggle(false);
     }
