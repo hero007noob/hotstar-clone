@@ -56,6 +56,9 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState();
   const [debouncedText] = useDebounce(searchQuery, 1000);
+
+  const { name, phone } = JSON.parse(localStorage.getItem("userdetails")) || [];
+
   const handleClick = () => {
     setInputWidth("400px");
     searchRef.current.style.display = "block";
@@ -132,6 +135,8 @@ const Navbar = () => {
           variant="ghost"
           mr="4"
           marginLeft={"-5"}
+          _hover={{}}
+          _active={{}}
           display={{ sm: "none", md: "none", lg: "none" }}
           ref={btnRef}
           colorScheme="teal"
@@ -149,8 +154,7 @@ const Navbar = () => {
             <DrawerHeader>
               <Box>
                 <Text color={"white"} fontSize="16px">
-                  {" "}
-                  Log in
+                  {isAuth ? name : "Log In"}
                 </Text>
                 <Text
                   color={"white"}
@@ -158,7 +162,7 @@ const Navbar = () => {
                   fontWeight={400}
                   opacity={0.6}
                 >
-                  For a better experience
+                  {isAuth ? phone : "For a better experience"}
                 </Text>
               </Box>
             </DrawerHeader>
@@ -305,6 +309,9 @@ const Navbar = () => {
         bg="#1f80e0"
         colorScheme="#1f80e0"
         w={{ sm: "60px", md: "80px" }}
+        onClick={() => {
+          navigate("/login");
+        }}
       >
         SUBSCRIBE
       </Button>
@@ -360,8 +367,9 @@ const Navbar = () => {
           p="1%"
         >
           {searchResults &&
-            searchResults.map((item) => (
-              <SearchResult data={item} close={closeSearch} />
+            searchResults.length > 2 &&
+            searchResults.map((item, i) => (
+              <SearchResult key={i} data={item} close={closeSearch} />
             ))}
         </Box>
       </InputGroup>
