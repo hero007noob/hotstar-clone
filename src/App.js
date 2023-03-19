@@ -11,21 +11,21 @@ import { useEffect } from 'react';
 import { checkLogin } from './Redux/loginredux/action';
 
 function App() {
-  let dispatch=useDispatch();
+  let dispatch = useDispatch();
 
- 
-  useEffect(()=>{
-   dispatch(checkLogin()) ;
 
-  },[])
+  useEffect(() => {
+    dispatch(checkLogin());
+
+  }, [])
 
 
 
   return (
     <div className="App">
-     
 
-            <AllRoutes />
+
+      <AllRoutes />
 
 
     </div>

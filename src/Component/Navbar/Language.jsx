@@ -88,8 +88,7 @@ function Language(props) {
         fontWeight="bold"
         color={"white"}
         w="90%"
-        margin={"20px auto"}
-      >
+        margin={"20px auto"}>
         Languages
       </Text>
       <Grid
@@ -101,8 +100,7 @@ function Language(props) {
         }}
         gap="10px"
         w="90%"
-        margin={" auto"}
-      >
+        margin={" auto"}>
         {LangArr.map((elem, i) => {
           return (
             <Link key={i} to={`/language/lang/${elem.name}`}>
@@ -113,8 +111,7 @@ function Language(props) {
                 _hover={{ transform: "scale(1.3)", zIndex: "2" }}
                 onClick={() => {
                   handleLang(elem.code);
-                }}
-              >
+                }}>
                 <Image
                   src={elem.img}
                   alt={elem.name}
@@ -130,8 +127,7 @@ function Language(props) {
                   top="50%"
                   left={"50%"}
                   transform="translate(-50%,-50%)"
-                  pointerEvents={"none"}
-                >
+                  pointerEvents={"none"}>
                   {elem.name}
                 </Text>
               </Box>

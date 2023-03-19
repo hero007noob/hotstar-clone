@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import YouTube from "react-youtube";
-import { getSimilar } from "../Redux/movies/action";
+import { addToContinue, getSimilar } from "../Redux/movies/action";
 import CardCarousel from "./Carousel/CardCarousel";
 export default function Play() {
   const parms = useParams();
@@ -24,6 +24,7 @@ export default function Play() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getSimilar({ id: parms.id, key: "similar" }));
+    addToContinue(parms.id);
     return () => {};
   }, [parms.id]);
   const opts = {
@@ -35,7 +36,7 @@ export default function Play() {
   };
   return (
     <Flex w="100%" pt={"90px"} direction="column">
-      {results && (
+      {results ? (
         <>
           <YouTube
             videoId={results.key}
@@ -57,6 +58,16 @@ export default function Play() {
             {results.type}
           </Text>
         </>
+      ) : (
+        <div style={{ width: "100%", height: "560px" }}>
+          <iframe
+            title="not found"
+            allow="fullscreen"
+            frameBorder="0"
+            height="100%"
+            src="https://giphy.com/embed/1hGu7ketlpuuWjwvMA/video"
+            width="100%"></iframe>
+        </div>
       )}
       <div style={{ width: "97%", margin: "0 auto" }}>
         <CardCarousel
