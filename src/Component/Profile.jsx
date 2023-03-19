@@ -58,12 +58,23 @@ function Profile(props) {
             variant="ghost"
             _hover={{}}
             _active={{}}
+            onClick={() => {
+              navigate("/login");
+            }}
           >
             GET DISNEY+ HOTSTAR PREMIUM <ChevronRightIcon fontSize="30px" />{" "}
           </Button>
         </Box>
       </Box>
-      <Box bg="#192133" m="15px 0 " p="20px">
+      <Box
+        bg="#192133"
+        m="15px 0 "
+        p="20px"
+        cursor="pointer"
+        onClick={() => {
+          navigate("/account-settings");
+        }}
+      >
         <Flex margin="auto" justifyContent="space-between">
           <Text fontSize="20px">Account Settings</Text>
           <ChevronRightIcon fontSize="35px" opacity={0.6} />
