@@ -16,6 +16,7 @@ import RegionalLanguage from "../Component/Navbar/RegionalLanguage";
 import Channel from "../Component/Navbar/Channel";
 import Profile from "../Component/Profile";
 import AccountSetting from "../Component/AccountSetting";
+import SetPassword from "../Component/SetPassword";
 
 function AllRoutes() {
   const routes = [
@@ -133,6 +134,14 @@ function AllRoutes() {
       element: (
         <>
           <AccountSetting />
+        </>
+      ),
+    },
+    {
+      path: "/account-settings/set-password",
+      element: (
+        <>
+          <SetPassword />
         </>
       ),
     },
