@@ -133,7 +133,6 @@ function AllRoutes() {
       element: (
         <>
           <AccountSetting />
-          <Footer />
         </>
       ),
     },
