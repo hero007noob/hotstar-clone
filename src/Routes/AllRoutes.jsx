@@ -24,7 +24,7 @@ function AllRoutes() {
       element:<Genre/>
     },
     {
-      path:"/filtered/:id",
+      path:"/genre/:id",
       element:<Filtered/>
     }
   ];
