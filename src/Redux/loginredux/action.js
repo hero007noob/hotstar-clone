@@ -3,7 +3,7 @@ import axios from "axios";
 export const Logoutfun = () => {
   return (dispatch) => {
     localStorage.clear();
-
+    upDateDevice(-1);
     dispatch({
       type: "login_now",
       payload: {
@@ -28,7 +28,7 @@ export const planforsubs = () => {
   let config = {
     method: "patch",
     maxBodyLength: Infinity,
-    url: `http://localhost:4000/users/${id}`,
+    url: `https://hotstar-backend.onrender.com/users/${id}`,
     headers: {
       "Content-Type": "application/json",
     },
@@ -46,8 +46,9 @@ export const planforsubs = () => {
 };
 
 export const getAuth = async ({ input }) => {
+  let count = await getDeviceCount();
   return new Promise((resolve, reject) => {
-    axios.get("http://localhost:4000/users").then((res) => {
+    axios.get("https://hotstar-backend.onrender.com/users").then((res) => {
       let exist = false;
       res.data.forEach((element) => {
         if (element.phone === input) {
@@ -55,12 +56,22 @@ export const getAuth = async ({ input }) => {
           localStorage.setItem("userdetails", JSON.stringify(element));
           localStorage.setItem("login", true);
           console.log("user logged in");
-          resolve();
+          if (count < 2) {
+            upDateDevice(1);
+            resolve();
+          } else {
+            reject();
+          }
         }
       });
       if (!exist) {
         registeruser(input).then(() => {
-          resolve();
+          upDateDevice(1);
+          if (count < 3) {
+            resolve();
+          } else {
+            reject();
+          }
         });
       }
     });
@@ -80,7 +91,7 @@ const registeruser = async (inputNumber) => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:4000/users",
+      url: "https://hotstar-backend.onrender.com/users",
       headers: {
         "Content-Type": "application/json",
       },
@@ -119,3 +130,51 @@ export const checkLogin = () => {
     }
   };
 };
+
+export const upDateDevice = async (value) => {
+  let count = await getDeviceCount();
+  let data = JSON.stringify({
+    "count": count + value
+  });
+
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://hotstar-backend.onrender.com/devices',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: data
+  };
+
+  axios.request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+}
+
+export const getDeviceCount = () => {
+  return new Promise((resolve, reject) => {
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'https://hotstar-backend.onrender.com/devices',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
+    axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        resolve(response.data.count)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  })
+}

@@ -1,4 +1,7 @@
 {
+  "devices": {
+    "count": 0
+  },
   "users": [
     {
       "id": 1,
@@ -137,12 +140,7 @@
     {
       "adult": false,
       "backdrop_path": null,
-      "genre_ids": [
-        28,
-        12,
-        14,
-        878
-      ],
+      "genre_ids": [28, 12, 14, 878],
       "id": 393209,
       "original_language": "en",
       "original_title": "Avatar 5",
@@ -158,10 +156,7 @@
     {
       "adult": false,
       "backdrop_path": null,
-      "genre_ids": [
-        878,
-        14
-      ],
+      "genre_ids": [878, 14],
       "id": 760801,
       "original_language": "en",
       "original_title": "Untitled Star Wars Film",
@@ -177,12 +172,7 @@
     {
       "adult": false,
       "backdrop_path": null,
-      "genre_ids": [
-        28,
-        878,
-        12,
-        14
-      ],
+      "genre_ids": [28, 878, 12, 14],
       "id": 216527,
       "original_language": "en",
       "original_title": "Avatar 4",
@@ -198,9 +188,7 @@
     {
       "adult": false,
       "backdrop_path": "/ela0vO7QFFTuQdUatbwD4S6qMCX.jpg",
-      "genre_ids": [
-        18
-      ],
+      "genre_ids": [18],
       "id": 1014060,
       "original_language": "hi",
       "original_title": "Zwigato",
@@ -216,11 +204,7 @@
     {
       "adult": false,
       "backdrop_path": "/7w06baRS9VPm5RYz8lawTCLiR4j.jpg",
-      "genre_ids": [
-        28,
-        80,
-        53
-      ],
+      "genre_ids": [28, 80, 53],
       "id": 592508,
       "original_language": "hi",
       "original_title": "Sooryavanshi",
@@ -236,11 +220,7 @@
     {
       "adult": false,
       "backdrop_path": "/kQM7o3NIkruIZLoQ9E2XzZQ8Ujl.jpg",
-      "genre_ids": [
-        28,
-        35,
-        80
-      ],
+      "genre_ids": [28, 35, 80],
       "id": 783461,
       "original_language": "hi",
       "original_title": "लूप लपेटा",
@@ -256,10 +236,7 @@
     {
       "adult": false,
       "backdrop_path": "/2Eewgp7o5AU1xCataDmiIL2nYxd.jpg",
-      "genre_ids": [
-        18,
-        36
-      ],
+      "genre_ids": [18, 36],
       "id": 943822,
       "original_language": "en",
       "original_title": "Prizefighter: The Life of Jem Belcher",
@@ -275,11 +252,7 @@
     {
       "adult": false,
       "backdrop_path": "/ql4PnvKYKaMtdx9Ck4fHY2wJphT.jpg",
-      "genre_ids": [
-        35,
-        18,
-        10749
-      ],
+      "genre_ids": [35, 18, 10749],
       "id": 32516,
       "original_language": "cn",
       "original_title": "金瓶梅2 愛的奴隸",
@@ -295,12 +268,7 @@
     {
       "adult": false,
       "backdrop_path": "/jr8tSoJGj33XLgFBy6lmZhpGQNu.jpg",
-      "genre_ids": [
-        16,
-        12,
-        35,
-        10751
-      ],
+      "genre_ids": [16, 12, 35, 10751],
       "id": 315162,
       "original_language": "en",
       "original_title": "Puss in Boots: The Last Wish",
@@ -316,11 +284,7 @@
     {
       "adult": false,
       "backdrop_path": "/xDMIl84Qo5Tsu62c9DGWhmPI67A.jpg",
-      "genre_ids": [
-        28,
-        12,
-        878
-      ],
+      "genre_ids": [28, 12, 878],
       "id": 505642,
       "original_language": "en",
       "original_title": "Black Panther: Wakanda Forever",
@@ -336,11 +300,7 @@
     {
       "adult": false,
       "backdrop_path": "/ae4xZiU7IeFVrvXxm2GjdcTrBm.jpg",
-      "genre_ids": [
-        27,
-        9648,
-        53
-      ],
+      "genre_ids": [27, 9648, 53],
       "id": 934433,
       "original_language": "en",
       "original_title": "Scream VI",
