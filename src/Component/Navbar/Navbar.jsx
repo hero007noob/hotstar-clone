@@ -308,6 +308,7 @@ const Navbar = () => {
         display={{ sm: "none", md: "none", lg: "none" }}
         bg="#1f80e0"
         colorScheme="#1f80e0"
+        ml="80px"
         w={{ sm: "60px", md: "80px" }}
         onClick={() => {
           navigate("/login");
@@ -399,7 +400,11 @@ const Navbar = () => {
         </Button>
       )}
 
-      <Flex w={"100px"} justifyContent="center">
+      <Flex
+        display={{ base: "none", sm: "flex" }}
+        w={"100px"}
+        justifyContent="center"
+      >
         {isAuth ? (
           <Menu isOpen={isProfileOpen}>
             <MenuButton
