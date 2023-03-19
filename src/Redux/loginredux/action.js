@@ -28,7 +28,7 @@ export const planforsubs = () => {
   let config = {
     method: "patch",
     maxBodyLength: Infinity,
-    url: `https://hotstar-backend.onrender.com/users/${id}`,
+    url: `${process.env.REACT_APP_BASE_URL}/users/${id}`,
     headers: {
       "Content-Type": "application/json",
     },
@@ -48,7 +48,7 @@ export const planforsubs = () => {
 export const getAuth = async ({ input }) => {
   let count = await getDeviceCount();
   return new Promise((resolve, reject) => {
-    axios.get("https://hotstar-backend.onrender.com/users").then((res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/users`).then((res) => {
       let exist = false;
       res.data.forEach((element) => {
         if (element.phone === input) {
@@ -91,7 +91,7 @@ const registeruser = async (inputNumber) => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://hotstar-backend.onrender.com/users",
+      url: `${process.env.REACT_APP_BASE_URL}/users`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -140,7 +140,7 @@ export const upDateDevice = async (value) => {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: 'https://hotstar-backend.onrender.com/devices',
+    url: `${process.env.REACT_APP_BASE_URL}/devices`,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -162,7 +162,7 @@ export const getDeviceCount = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'https://hotstar-backend.onrender.com/devices',
+      url: `${process.env.REACT_APP_BASE_URL}/devices`,
       headers: {
         'Content-Type': 'application/json'
       },
