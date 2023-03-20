@@ -96,7 +96,7 @@ function ProductDetail(props) {
                 </svg>
                 &nbsp;&nbsp;
                 <span style={{ fontSize: "20px", textAlign: "center" }}>
-                  Watch Movie
+                  Watch Trailer
                 </span>
               </button>
             </div>
@@ -117,7 +117,7 @@ function ProductDetail(props) {
                 </svg>
                 &nbsp;&nbsp;
                 <span style={{ fontSize: "20px", textAlign: "center" }}>
-                  Watch Trailer
+                  Watch Movie
                 </span>
               </button>
             </div>

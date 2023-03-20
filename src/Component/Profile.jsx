@@ -1,16 +1,80 @@
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  HStack,
+  Text,
+  Input,
+} from "@chakra-ui/react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Login from "./Login";
 import { Logoutfun } from "../Redux/loginredux/action";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { AiFillCheckCircle, AiOutlineEdit } from "react-icons/ai";
+import axios from "axios";
 
 function Profile(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [nameState, setName] = useState();
 
-  const { name, phone } = JSON.parse(localStorage.getItem("userdetails")) || [];
+  let { id, name, phone } =
+    JSON.parse(localStorage.getItem("userdetails")) || [];
+
+  console.log(id, name);
+
+  let editRef = useRef();
+  let nameRef = useRef();
+  let headingRef = useRef();
+
+  useEffect(() => {
+    const postData = () => {};
+  }, [name, phone]);
+
+  const handdleEdit = () => {
+    editRef.current.style.display = "none";
+    nameRef.current.style.display = "flex";
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleNameSubmit = (id) => {
+    let data = JSON.stringify({
+      name: nameState,
+    });
+
+    let config = {
+      method: "patch",
+      maxBodyLength: Infinity,
+      url: `https://hotstar-backend.onrender.com/users/${id}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        let store = JSON.parse(localStorage.getItem("userdetails"));
+        store.name = nameState;
+        localStorage.setItem("userdetails", JSON.stringify(store));
+        console.log("Ref", headingRef.current.value);
+        headingRef.current.textContent = nameState;
+        editRef.current.style.display = "flex";
+        nameRef.current.style.display = "none";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Box width={"500px"} margin="150px auto" color="white">
@@ -25,13 +89,39 @@ function Profile(props) {
           />
         </Box>
         <Box textAlign="center">
-          <Box margin={"10px"}>
-            <Heading as={"h1"} fontSize="30px">
+          <HStack ref={editRef} marginTop={"10px"} justifyContent={"center"}>
+            <Heading ref={headingRef} as={"h1"} fontSize="30px">
               {name}
             </Heading>
-          </Box>
+            <AiOutlineEdit size="25" cursor="pointer" onClick={handdleEdit} />
+          </HStack>
+          <HStack
+            ref={nameRef}
+            display="none"
+            marginTop={"10px"}
+            justifyContent={"center"}
+          >
+            <Input
+              w={200}
+              fontSize={22}
+              variant="flushed"
+              placeholder="Enter Your Name"
+              _placeholder={{ paddingLeft: "10px" }}
+              onChange={(e) => {
+                handleNameChange(e);
+              }}
+            />
+            <AiFillCheckCircle
+              size={40}
+              color="#1f80e0"
+              cursor="pointer"
+              onClick={() => {
+                handleNameSubmit(id);
+              }}
+            />
+          </HStack>
           <Box>
-            <Text fontSize="18px" opacity={0.8}>
+            <Text fontSize="18px" opacity={0.8} marginTop={"10px"}>
               +91 {phone}
             </Text>
           </Box>

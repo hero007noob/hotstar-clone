@@ -17,8 +17,15 @@ import Channel from "../Component/Navbar/Channel";
 import Profile from "../Component/Profile";
 import AccountSetting from "../Component/AccountSetting";
 import SetPassword from "../Component/SetPassword";
+import MobileFooter from "../Component/Navbar/MobileFooter";
+import { useSelector } from "react-redux";
+import PrivateRoute from "../Component/PrivateRoute";
 
 function AllRoutes() {
+  const isLock = useSelector((state) => state.parentReducer.isLocked);
+  React.useEffect(() => {
+    console.log("lock", isLock);
+  }, [isLock]);
   const routes = [
     {
       path: "/profile",
@@ -26,6 +33,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Profile />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -36,6 +44,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Language />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -46,6 +55,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <RegionalLanguage />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -56,6 +66,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <WishList />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -65,6 +76,7 @@ function AllRoutes() {
       element: (
         <>
           <Login />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -75,6 +87,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Paymentpage />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -85,6 +98,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <CardDetails />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -95,6 +109,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Home />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -105,6 +120,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <ProductDetail />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -115,6 +131,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Genre />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -125,6 +142,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Channel />
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -151,6 +169,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Filtered />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -161,6 +180,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Play />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -174,7 +194,13 @@ function AllRoutes() {
   return (
     <Routes>
       {routes.map((elem, i) => {
-        return <Route key={i} path={elem.path} element={elem.element} />;
+        return (
+          <Route
+            key={i}
+            path={elem.path}
+            element={<PrivateRoute>{elem.element}</PrivateRoute>}
+          />
+        );
       })}
     </Routes>
   );

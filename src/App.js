@@ -9,14 +9,21 @@ import MobileFooter from './Component/Navbar/MobileFooter'
 import AllRoutes from './Routes/AllRoutes';
 import { useEffect } from 'react';
 import { checkLogin } from './Redux/loginredux/action';
+import { getParentControls, setParentControls } from './Redux/parentRedux/action';
 
 function App() {
   let dispatch = useDispatch();
 
-
+  const checkParentControls = () => {
+    getParentControls().then((response) => {
+      console.log('RES', response);
+      let x = response.status
+      dispatch(setParentControls({ value: x }));
+    })
+  }
   useEffect(() => {
     dispatch(checkLogin());
-
+    checkParentControls();
   }, [])
 
 

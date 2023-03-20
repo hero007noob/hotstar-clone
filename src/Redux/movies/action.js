@@ -61,7 +61,7 @@ const removeFromWishlist = async (id) => {
     let config = {
         method: 'delete',
         maxBodyLength: Infinity,
-        url: `https://hotstar-backend.onrender.com/wishlist/${id}`,
+        url: `${process.env.REACT_APP_BASE_URL}/wishlist/${id}`,
         headers: {}
     };
 
@@ -81,7 +81,7 @@ const addToWishlist = async (body) => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://hotstar-backend.onrender.com/wishlist',
+        url: `${process.env.REACT_APP_BASE_URL}/wishlist`,
         headers: {
             'Content-Type': 'application/json'
         },
@@ -106,7 +106,7 @@ const addToContinue = async (id) => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://hotstar-backend.onrender.com/continue',
+        url: `${process.env.REACT_APP_BASE_URL}/continue`,
         headers: {
             'Content-Type': 'application/json'
         },
@@ -128,7 +128,7 @@ const getWishlistData = async (id) => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'https://hotstar-backend.onrender.com/wishlist',
+            url: `${process.env.REACT_APP_BASE_URL}/wishlist`,
             headers: {}
         };
 
@@ -149,7 +149,7 @@ const getContinueWatching = async (id) => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: 'https://hotstar-backend.onrender.com/continue',
+            url: `${process.env.REACT_APP_BASE_URL}/continue`,
             headers: {}
         };
 
@@ -169,7 +169,7 @@ const checkWishlist = (id) => {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: `https://hotstar-backend.onrender.com/wishlist?id=${id}`,
+            url: `${process.env.REACT_APP_BASE_URL}/wishlist?id=${id}`,
             headers: {}
         };
 

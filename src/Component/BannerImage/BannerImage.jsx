@@ -6,7 +6,6 @@ import { useNavigate } from "react-router";
 import styles from "../../CSS/banner.module.css";
 export default function BannerImage({ data }) {
   const navigate = useNavigate();
-  console.log(data);
   const imagBaseUrl = "https://image.tmdb.org/t/p/original";
   return (
     <div

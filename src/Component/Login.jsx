@@ -21,6 +21,9 @@ import {
   GridItem,
   InputGroup,
   InputLeftAddon,
+  HStack,
+  PinInput,
+  PinInputField,
 } from "@chakra-ui/react";
 
 import { CheckIcon, ChevronRightIcon, CloseIcon } from "@chakra-ui/icons";
@@ -37,6 +40,7 @@ import axios from "axios";
 function Login() {
   const [selectedplan, setSelectedPlan] = useState("SUPER");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [changepin, setChangepin] = useState(false);
   const {
     isOpen: isDeviceOpen,
     onOpen: onDeviceOpen,
@@ -54,16 +58,17 @@ function Login() {
 
   useEffect(() => {
     console.log("effect", isAuth);
-    onDeviceOpen();
-  }, [isAuth]);
+    // onDeviceOpen();
+  }, [isAuth, changepin]);
 
   const handleSubmit = () => {
     getAuth({ input: inputNumber })
       .then((x) => {
+        console.log("resolved", x);
         dispatch(checkLogin());
       })
-      .catch((x) => {
-        console.log("should");
+      .catch((y) => {
+        console.log("reject", y);
         onDeviceOpen();
       });
     setInputNumber("");
@@ -75,6 +80,7 @@ function Login() {
 
     if (val === "option3") {
       handleLogout();
+      setChangepin(false);
     } else if (val === "option2") {
       navigate("/profile");
     } else if (val === "option1") {
@@ -114,7 +120,7 @@ function Login() {
 
   return (
     <Box w="100%">
-      <Modal isOpen={isDeviceOpen} onClose={onDeviceClose}>
+      <Modal isOpen={isDeviceOpen} onClose={onDeviceClose} isCentered>
         <ModalOverlay />
         <ModalContent
           background={"linear-gradient(to bottom, #141b29, #0c111b 300px);"}
@@ -124,16 +130,21 @@ function Login() {
             <Text>DeviceLimit Exceeded</Text>
           </ModalHeader>
           <ModalBody
-            padding={"30px"}
+            padding={"20px"}
             display={"flex"}
             alignItems="center"
             justifyContent={"center"}
-            fontSize={"16px"}
+            fontSize={"18px"}
             flexDirection="column"
+            fontWeight={"500"}
             textAlign="center">
-            <Text>Upgrade Plan To Continue Or</Text>
-            <Text fontSize={"12px"}>Or</Text>
-            <Text>Log Out from Other Devices</Text>
+            <Text color={"#fedf7b"} fontSize={"22px"}>
+              Upgrade Plan To Continue{" "}
+            </Text>
+            <Text fontSize={"12px"} py="10px">
+              OR
+            </Text>
+            <Text>Logout from Other Devices</Text>
           </ModalBody>
 
           <ModalFooter>
@@ -602,70 +613,166 @@ function Login() {
             </Grid>
           </Box>
 
-          {/* ===================login with phone model==================== */}
-          <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
+          {/* ===================login with phone modal==================== */}
+          <Modal
+            isOpen={isOpen}
+            onClose={() => {
+              setChangepin(false);
+              onClose();
+            }}
+            isCentered
+            size="xl">
             <ModalOverlay />
-            <ModalContent
-              p={"25px"}
-              backgroundColor="#192133"
-              color={"white"}
-              padding="50px">
-              <ModalHeader fontSize="25px" fontWeight="400" mt={"80px"}>
-                Login to continue
-              </ModalHeader>
-              <ModalCloseButton size={"lg"} margin="20px" />
-              <ModalBody pb={6}>
-                <Box
-                  border={"1px solid #1e75cc"}
-                  borderRadius="5px"
-                  p="10px"
-                  bg="#16273f"
-                  mt="40px"
-                  textAlign={"center"}>
-                  <Button
-                    fontSize="20px"
-                    _hover={{}}
-                    _active={{}}
-                    bg="transparant"
-                    color="#1e75cc">
-                    Have a Facebook/Email account ?
-                  </Button>
-                </Box>
-                <InputGroup mt="40px" position="relative">
-                  <InputLeftAddon
-                    position="absolute"
-                    left="-2"
-                    bottom={0.5}
-                    border={"none"}
-                    bg="transparent"
-                    children="+91 | "
-                    fontSize="20px"
-                  />
-                  <Input
-                    variant="flushed"
-                    pl="60px"
-                    fontSize="20px"
-                    placeholder="Enter your mobile number"
-                    _placeholder={{ fontSize: "20px" }}
-                    onChange={(e) => setInputNumber(e.target.value)}
-                  />
-                </InputGroup>
-              </ModalBody>
+            {changepin === false ? (
+              <ModalContent
+                p={"25px"}
+                backgroundColor="#192133"
+                color={"white"}
+                padding="50px">
+                <ModalHeader fontSize="25px" fontWeight="400" mt={"80px"}>
+                  Login to continue
+                </ModalHeader>
+                <ModalCloseButton size={"lg"} margin="20px" />
+                <ModalBody pb={6}>
+                  <Box
+                    border={"1px solid #1e75cc"}
+                    borderRadius="5px"
+                    p="10px"
+                    bg="#16273f"
+                    mt="40px"
+                    textAlign={"center"}>
+                    <Button
+                      fontSize="20px"
+                      _hover={{}}
+                      _active={{}}
+                      bg="transparant"
+                      color="#1e75cc">
+                      Have a Facebook/Email account ?
+                    </Button>
+                  </Box>
+                  <InputGroup mt="40px" position="relative">
+                    <InputLeftAddon
+                      position="absolute"
+                      left="-2"
+                      bottom={0.5}
+                      border={"none"}
+                      bg="transparent"
+                      children="+91 | "
+                      fontSize="20px"
+                    />
+                    <Input
+                      variant="flushed"
+                      pl="60px"
+                      fontSize="20px"
+                      maxLength={"10"}
+                      placeholder="Enter your mobile number"
+                      _placeholder={{ fontSize: "20px" }}
+                      onChange={(e) => setInputNumber(e.target.value)}
+                    />
+                  </InputGroup>
+                </ModalBody>
 
-              <ModalFooter justifyContent={"center"}>
-                <Button
-                  onClick={handleSubmit}
-                  colorScheme="blue"
-                  mr={3}
-                  w="100%"
-                  p={8}
-                  fontSize={18}
-                  isDisabled={inputNumber.length < 10}>
-                  CONTINUE
-                  <ChevronRightIcon fontSize={25} />
-                </Button>
-              </ModalFooter>
-            </ModalContent>
+                <ModalFooter justifyContent={"center"}>
+                  <Button
+                    // onClick={handleSubmit}
+                    onClick={() => setChangepin(true)}
+                    colorScheme="blue"
+                    mr={3}
+                    w="100%"
+                    p={8}
+                    fontSize={18}
+                    isDisabled={inputNumber.length < 10}>
+                    CONTINUE
+                    <ChevronRightIcon fontSize={25} />
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            ) : (
+              <ModalContent
+                p={"25px"}
+                backgroundColor="#192133"
+                color={"white"}
+                padding="50px">
+                <ModalHeader fontSize="25px" fontWeight="400" mt={"80px"}>
+                  Enter the 4-digit code sent to <br /> +91******
+                  {inputNumber.charAt(6)}
+                  {inputNumber.charAt(7)}
+                  {inputNumber.charAt(8)}
+                  {inputNumber.charAt(9)}
+                </ModalHeader>
+                <ModalCloseButton size={"lg"} margin="20px" />
+                <ModalBody pb={6}>
+                  {/* <Box
+                    border={"1px solid #1e75cc"}
+                    borderRadius="5px"
+                    p="10px"
+                    bg="#16273f"
+                    mt="40px"
+                    textAlign={"center"}
+                  >
+                    <Button
+                      fontSize="20px"
+                      _hover={{}}
+                      _active={{}}
+                      bg="transparant"
+                      color="#1e75cc"
+                    >
+                      Have a Facebook/Email account ?
+                    </Button>
+                  </Box> */}
+                  <HStack>
+                    <PinInput variant={"flushed"} placeholder=" ">
+                      <PinInputField style={{ marginRight: "10px" }} />
+                      <PinInputField style={{ marginRight: "10px" }} />
+                      <PinInputField style={{ marginRight: "10px" }} />
+                      <PinInputField style={{ marginRight: "10px" }} />
+                    </PinInput>
+                  </HStack>
+                  <p
+                    style={{
+                      color: "#1f80e0",
+                      marginTop: "15px",
+                      fontWeight: "bolder",
+                    }}>
+                    RESEND CODE
+                  </p>
+                  {/* <InputGroup mt="40px" position="relative">
+                    <InputLeftAddon
+                      position="absolute"
+                      left="-2"
+                      bottom={0.5}
+                      border={"none"}
+                      bg="transparent"
+                      children="+91 | "
+                      fontSize="20px"
+                    />
+                    <Input
+                      variant="flushed"
+                      pl="60px"
+                      fontSize="20px"
+                      placeholder="Enter your mobile number"
+                      _placeholder={{ fontSize: "20px" }}
+                      onChange={(e) => setInputNumber(e.target.value)}
+                    />
+                  </InputGroup> */}
+                </ModalBody>
+
+                <ModalFooter justifyContent={"center"}>
+                  <Button
+                    onClick={handleSubmit}
+                    // onClick={() => console.log(" pin entered")}
+                    colorScheme="blue"
+                    mr={3}
+                    w="100%"
+                    p={8}
+                    fontSize={18}
+                    isDisabled={inputNumber.length < 10}>
+                    CONTINUE
+                    <ChevronRightIcon fontSize={25} />
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            )}
           </Modal>
 
           {/* <Box color={"white"}>

@@ -9,7 +9,6 @@ import BannerImage from "../BannerImage/BannerImage";
 import VerticalCard from "../Cards/VerticalCard";
 import styles from "../../CSS/CardCarousel.module.css";
 export default function CardCarousel({ data, type, title, mt = "100px" }) {
-  console.log("um", data);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.

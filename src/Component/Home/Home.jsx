@@ -55,7 +55,7 @@ export default function Home() {
         />
       )}
       <CardCarousel data={popular} type={"movie"} title={"Popular Movies"} />
-      <CardCarousel data={latest} type={"movie"} title={"Latest & Trending"} />
+      <CardCarousel data={latest} type={"movie"} title={"Upcoming Movies"} />
       <CardCarousel data={grossing} type={"movie"} title={"Top Grossing"} />
       <CardCarousel data={rated} type={"movie"} title={"Top Rated"} />
       <CardCarousel data={viewed} type={"movie"} title={"Most Viewed"} />

@@ -15,7 +15,6 @@ export default function HorizontalCardCarousel({
   title,
   mt = "100px",
 }) {
-  console.log("um", data);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.

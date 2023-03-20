@@ -1,14 +1,14 @@
 
 
 const initialState = {
-    Auth:false,
+    Auth: false,
     error: false,
-    user:{},
-    
+    user: {},
+    updated: '',
 }
 
 const loginReducer = (state = { ...initialState }, { type, payload }) => {
-//    console.log("loginreducer",payload)
+    //    console.log("loginreducer",payload)
     switch (type) {
         case "login_now":
             return {
