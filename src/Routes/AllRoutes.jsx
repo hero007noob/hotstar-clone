@@ -165,9 +165,10 @@ function AllRoutes() {
         </>
       ),
     },
-      path:"/genre/:id",
-      element:<Filtered/>
-    }
+    {
+      path: "/genre/:id",
+      element: <Filtered />,
+    },
   ];
 
   return (
