@@ -1,0 +1,159 @@
+{
+  "devices": [
+    {
+      "phone": "1111111111",
+      "count": 1,
+      "id": 1
+    },
+    {
+      "phone": "4444444444",
+      "count": 0,
+      "id": 2
+    },
+    {
+      "phone": "6666666666",
+      "count": 0,
+      "id": 3
+    },
+    {
+      "phone": "2222222222",
+      "count": 0,
+      "id": 4
+    },
+    {
+      "phone": "2999999999",
+      "count": 0,
+      "id": 5
+    },
+    {
+      "phone": "0000000000",
+      "count": 1,
+      "id": 6
+    }
+  ],
+  "users": [
+    {
+      "phone": "1111111111",
+      "name": "User",
+      "package": {
+        "plan": "PREMIUM",
+        "price": "₹299/Year"
+      },
+      "parentalLock": "false",
+      "id": 1
+    },
+    {
+      "phone": "4444444444",
+      "name": "User",
+      "package": {
+        "plan": "PREMIUM",
+        "price": "₹1499/Year"
+      },
+      "parentalLock": "false",
+      "id": 2
+    },
+    {
+      "phone": "6666666666",
+      "name": "User",
+      "package": {
+        "plan": "PREMIUM",
+        "price": "₹1499/Year"
+      },
+      "parentalLock": "false",
+      "id": 3
+    },
+    {
+      "phone": "2222222222",
+      "name": "User",
+      "package": {
+        "plan": "base",
+        "price": "free"
+      },
+      "parentalLock": "false",
+      "id": 4
+    },
+    {
+      "phone": "2999999999",
+      "name": "User",
+      "package": {
+        "plan": "PREMIUM",
+        "price": "₹1499/Year"
+      },
+      "parentalLock": "false",
+      "id": 5
+    },
+    {
+      "phone": "0000000000",
+      "name": "User",
+      "package": {
+        "plan": "SUPER",
+        "price": "₹899/Year"
+      },
+      "parentalLock": "false",
+      "id": 6
+    }
+  ],
+  "continue": {
+    "adult": false,
+    "backdrop_path": "/iwRZjIftnFy2vjSAQEKU3JUgv3m.jpg",
+    "belongs_to_collection": null,
+    "budget": 0,
+    "genres": [
+      {
+        "id": 18,
+        "name": "Drama"
+      },
+      {
+        "id": 10402,
+        "name": "Music"
+      }
+    ],
+    "homepage": "http://www.netflix.com/title/81423081",
+    "id": 934419,
+    "imdb_id": "tt14428598",
+    "original_language": "hi",
+    "original_title": "क़ला",
+    "overview": "Haunted by her past, a talented singer with a rising career copes with the pressure of success, a mother's disdain and the voices of doubt within her.",
+    "popularity": 8.947,
+    "poster_path": "/4d2xoBGXMpfeQ6QgpVI4qm34bKP.jpg",
+    "production_companies": [
+      {
+        "id": 80879,
+        "logo_path": null,
+        "name": "Clean Slate Films",
+        "origin_country": "IN"
+      }
+    ],
+    "production_countries": [
+      {
+        "iso_3166_1": "IN",
+        "name": "India"
+      }
+    ],
+    "release_date": "2022-11-24",
+    "revenue": 0,
+    "runtime": 119,
+    "spoken_languages": [
+      {
+        "english_name": "English",
+        "iso_639_1": "en",
+        "name": "English"
+      },
+      {
+        "english_name": "Hindi",
+        "iso_639_1": "hi",
+        "name": "हिन्दी"
+      }
+    ],
+    "status": "Released",
+    "tagline": "",
+    "title": "Qala",
+    "video": false,
+    "vote_average": 6.389,
+    "vote_count": 9
+  },
+  "wishlist": [],
+  "parentalLock": {
+    "status": true
+  }
+}

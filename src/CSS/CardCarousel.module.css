@@ -1,0 +1,17 @@
+.carousel_container {
+  height: 500px;
+  background: #0c111b;
+  /* top: 0; */
+}
+.horizontal_carousel_container {
+  height: 300px;
+  background: #0c111b;
+  /* top: 0; */
+}
+.carousel_item:hover {
+  z-index: 5;
+}
+.carousel_item {
+  /* margin: -5px; */
+  /* width: 200px !important; */
+}
