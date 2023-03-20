@@ -185,6 +185,17 @@ function AllRoutes() {
         </>
       ),
     },
+    {
+      path: "/genre/:id",
+      element: (
+        <>
+          <Navbar />
+          <Filtered />,
+          <MobileFooter />
+          <Footer />
+        </>
+      ),
+    },
   ];
 
   return (

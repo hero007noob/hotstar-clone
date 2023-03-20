@@ -182,33 +182,39 @@ function Genre() {
   const genrNav = useNavigate();
 
   return (
-    <div style={{ backgroundColor: "#0F1014", marginTop: "-23px" }}>
-      <h1
+    <div style={{ backgroundColor: "#131927" }}>
+      <h2
         style={{
-          textAlign: "center",
-          backgroundColor: "#0F1014",
+          marginLeft: "50px",
+          fontSize: "20px",
+          fontFamily: "sans-serif",
           color: "white",
-          padding: "50px 0",
+          marginTop: "50px",
+          padding: "50px 0 0",
         }}>
-        Popular Genres
-      </h1>
+        Genres
+      </h2>
       ,
       <div
         className="div-box"
         style={{
           display: "flex",
+          marginTop: "-22px",
           justifyContent: "center",
-          backgroundColor: "#0F1014",
           flexWrap: "wrap",
         }}>
         {data.map((elm) => (
           <div
-            onClick={() => genrNav(`/genre/${elm.id}`)}
+            onClick={() => {
+              localStorage.setItem("currGenre", JSON.stringify(elm.genre));
+              genrNav(`/genre/${elm.id}`);
+            }}
             className={styles.box}
             style={{
               margin: "5px",
               marginTop: "20px",
-              width: "220px",
+              width: "244px",
+              height: "auto",
               position: "relative",
             }}>
             <img
