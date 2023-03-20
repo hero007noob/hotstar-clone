@@ -205,7 +205,10 @@ function Genre() {
         }}>
         {data.map((elm) => (
           <div
-            onClick={() => genrNav(`/genre/${elm.id}`)}
+            onClick={() => {
+              localStorage.setItem("currGenre", JSON.stringify(elm.genre));
+              genrNav(`/genre/${elm.id}`);
+            }}
             className={styles.box}
             style={{
               margin: "5px",

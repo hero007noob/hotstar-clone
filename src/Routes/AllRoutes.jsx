@@ -187,7 +187,14 @@ function AllRoutes() {
     },
     {
       path: "/genre/:id",
-      element: <Filtered />,
+      element: (
+        <>
+          <Navbar />
+          <Filtered />,
+          <MobileFooter />
+          <Footer />
+        </>
+      ),
     },
   ];
 
