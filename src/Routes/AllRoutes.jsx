@@ -17,6 +17,7 @@ import Channel from "../Component/Navbar/Channel";
 import Profile from "../Component/Profile";
 import AccountSetting from "../Component/AccountSetting";
 import SetPassword from "../Component/SetPassword";
+import MobileFooter from "../Component/Navbar/MobileFooter";
 
 function AllRoutes() {
   const routes = [
@@ -26,6 +27,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Profile />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -36,6 +38,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Language />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -46,6 +49,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <RegionalLanguage />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -56,6 +60,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <WishList />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -65,6 +70,7 @@ function AllRoutes() {
       element: (
         <>
           <Login />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -75,6 +81,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Paymentpage />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -85,6 +92,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <CardDetails />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -95,6 +103,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Home />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -105,6 +114,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <ProductDetail />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -115,6 +125,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Genre />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -125,6 +136,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Channel />
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -151,6 +163,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Filtered />,
+          <MobileFooter />
           <Footer />
         </>
       ),
@@ -161,6 +174,7 @@ function AllRoutes() {
         <>
           <Navbar />
           <Play />,
+          <MobileFooter />
           <Footer />
         </>
       ),
