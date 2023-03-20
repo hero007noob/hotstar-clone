@@ -107,7 +107,7 @@ const Navbar = () => {
   useEffect(() => {
     const sub = JSON.parse(localStorage.getItem("subscription")) || [];
     const user = JSON.parse(localStorage.getItem("userdetails")) || [];
-    const newPlan = sub.package?.plan || user.package?.plan || "base";
+    const newPlan = sub?.package?.plan || user?.package?.plan || "base";
     setPlan(newPlan);
     return () => {};
   }, [updated]);
