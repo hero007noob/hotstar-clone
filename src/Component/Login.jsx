@@ -58,16 +58,17 @@ function Login() {
 
   useEffect(() => {
     console.log("effect", isAuth);
-    onDeviceOpen();
+    // onDeviceOpen();
   }, [isAuth, changepin]);
 
   const handleSubmit = () => {
     getAuth({ input: inputNumber })
       .then((x) => {
+        console.log("resolved", x);
         dispatch(checkLogin());
       })
-      .catch((x) => {
-        console.log("should");
+      .catch((y) => {
+        console.log("reject", y);
         onDeviceOpen();
       });
     setInputNumber("");
@@ -119,28 +120,31 @@ function Login() {
 
   return (
     <Box w="100%">
-      <Modal isOpen={isDeviceOpen} onClose={onDeviceClose}>
+      <Modal isOpen={isDeviceOpen} onClose={onDeviceClose} isCentered>
         <ModalOverlay />
         <ModalContent
           background={"linear-gradient(to bottom, #141b29, #0c111b 300px);"}
-          color="white"
-        >
+          color="white">
           {/* <ModalCloseButton /> */}
           <ModalHeader display={"flex"} justifyContent={"center"}>
             <Text>DeviceLimit Exceeded</Text>
           </ModalHeader>
           <ModalBody
-            padding={"30px"}
+            padding={"20px"}
             display={"flex"}
             alignItems="center"
             justifyContent={"center"}
-            fontSize={"16px"}
+            fontSize={"18px"}
             flexDirection="column"
-            textAlign="center"
-          >
-            <Text>Upgrade Plan To Continue Or</Text>
-            <Text fontSize={"12px"}>Or</Text>
-            <Text>Log Out from Other Devices</Text>
+            fontWeight={"500"}
+            textAlign="center">
+            <Text color={"#fedf7b"} fontSize={"22px"}>
+              Upgrade Plan To Continue{" "}
+            </Text>
+            <Text fontSize={"12px"} py="10px">
+              OR
+            </Text>
+            <Text>Logout from Other Devices</Text>
           </ModalBody>
 
           <ModalFooter>
@@ -148,8 +152,7 @@ function Login() {
               colorScheme="blue"
               onClick={onDeviceClose}
               w="100%"
-              variant="outline"
-            >
+              variant="outline">
               Close
             </Button>
           </ModalFooter>
@@ -162,15 +165,13 @@ function Login() {
             minWidth="max-content"
             justify="space-between"
             alignItems="center"
-            gap="2"
-          >
+            gap="2">
             <Box
               p="2"
               mx="20px"
               zIndex={3}
               onClick={() => navigate("/")}
-              cursor="pointer"
-            >
+              cursor="pointer">
               <img
                 width="120px"
                 height="25px"
@@ -186,8 +187,7 @@ function Login() {
                 width={["80px", "150px"]}
                 height="30px"
                 fontSize="12px"
-                color="white"
-              >
+                color="white">
                 <option value="option2" className="select-tags">
                   View in English
                 </option>
@@ -206,8 +206,7 @@ function Login() {
                   height="30px"
                   fontSize="12px"
                   color="white"
-                  onChange={(e) => handleUSer(e)}
-                >
+                  onChange={(e) => handleUSer(e)}>
                   <option value="" className="select-tags">
                     {ph.phone}
                   </option>
@@ -228,8 +227,7 @@ function Login() {
                   borderRadius="2px"
                   width="82px"
                   height="30px"
-                  fontSize="12px"
-                >
+                  fontSize="12px">
                   Log in
                 </Button>
               )}
@@ -245,8 +243,7 @@ function Login() {
           <Heading
             fontSize={["15px", "20px", "24px"]}
             mb={"20px"}
-            fontWeight="normal"
-          >
+            fontWeight="normal">
             Subscribe to watch all content on Disney+ Hotstar
           </Heading>
           {/* -------------------subscription box-------------- */}
@@ -254,15 +251,13 @@ function Login() {
             className="subscription-box"
             // height={["400px", "500px"]}
             w={["90%", "85%", "60%"]}
-            my="20px"
-          >
+            my="20px">
             <Grid
               marginTop="10px"
               h="95%"
               templateRows="repeat(12, 1fr)"
               templateColumns="repeat(6, 1fr)"
-              gap={4}
-            >
+              gap={4}>
               <GridItem rowSpan={8} colSpan={6} p="8px" display="flex">
                 {/* subscription top box */}
                 <GridItem w="60%" colSpan={4} paddingY="15px">
@@ -274,51 +269,43 @@ function Login() {
                     fontSize={["8px", "9px", "16px"]}
                     fontWeight="500"
                     lineHeight={2.0}
-                    color="B3B4BA"
-                  >
+                    color="B3B4BA">
                     <Box
                       p={["5px"]}
-                      borderBottom="1px solid rgba(46,51,51,0.4)"
-                    >
+                      borderBottom="1px solid rgba(46,51,51,0.4)">
                       <Box my={["15px", "10px"]}>
                         All content <br />
                       </Box>
                       <Box
                         mt="-10px"
                         color="#1f80e0"
-                        fontSize={["7px", "10px", "12px"]}
-                      >
+                        fontSize={["7px", "10px", "12px"]}>
                         Movies, live sports, TV, Specialst
                       </Box>
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
-                    >
+                      p={["4px", "5px"]}>
                       Watch on TV or Laptop
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
-                    >
+                      p={["4px", "5px"]}>
                       Ads free movies and shows (except sports)
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
-                    >
+                      p={["4px", "5px"]}>
                       Number of devices that can be logged in
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
-                    >
+                      p={["4px", "5px"]}>
                       Max video quality
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
-                    >
+                      p={["4px", "5px"]}>
                       Max audio quality
                     </Box>
                   </Box>
@@ -330,15 +317,13 @@ function Login() {
                   w="20%"
                   colSpan={2}
                   lineHeight={2.0}
-                  bg={selectedplan === "SUPER" ? "#1e2a48" : ""}
-                >
+                  bg={selectedplan === "SUPER" ? "#1e2a48" : ""}>
                   <Box
                     fontSize={["12px", "14px", "16px"]}
                     fontWeight="bold"
                     color={
                       selectedplan === "SUPER" ? "#fedf7b" : "rgb(162,166,172)"
-                    }
-                  >
+                    }>
                     <p>Super</p>
                   </Box>
                   <Box
@@ -347,51 +332,43 @@ function Login() {
                     fontSize={["8px", "9px", "16px"]}
                     color={
                       selectedplan === "SUPER" ? "white" : "rgb(162,166,172)"
-                    }
-                  >
+                    }>
                     <Box
                       p={["5px"]}
-                      borderBottom="1px solid rgba(46,51,51,0.4)"
-                    >
+                      borderBottom="1px solid rgba(46,51,51,0.4)">
                       <Box my={["5px", "10px"]}>
                         <CheckIcon /> <br />
                       </Box>
                       <Box
                         mt="-10px"
                         color="#3182CE"
-                        fontSize={["7px", "10px", "12px"]}
-                      ></Box>
+                        fontSize={["7px", "10px", "12px"]}></Box>
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
-                    >
+                      p={["4px", "5px"]}>
                       <CheckIcon />
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["12px", "5px"]}
-                    >
+                      p={["12px", "5px"]}>
                       <CloseIcon />
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["12px", "5px"]}
-                    >
+                      p={["12px", "5px"]}>
                       2
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["10px", "9px", "12px"]}
-                    >
+                      fontSize={["10px", "9px", "12px"]}>
                       Full HD(1080p)
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["10px", "9px", "12px"]}
-                    >
+                      fontSize={["10px", "9px", "12px"]}>
                       Dolby 5.1
                     </Box>
                   </Box>
@@ -408,8 +385,7 @@ function Login() {
                     selectedplan === "PREMIUM" || selectedplan === "PREMIUM1"
                       ? "#1e2a48"
                       : ""
-                  }
-                >
+                  }>
                   <Box
                     fontSize={["12px", "14px", "16px"]}
                     fontWeight="bold"
@@ -417,59 +393,50 @@ function Login() {
                       selectedplan === "PREMIUM1" || selectedplan === "PREMIUM"
                         ? "#fedf7b"
                         : "rgb(162,166,172)"
-                    }
-                  >
+                    }>
                     <p>Premium</p>
                   </Box>
                   <Box
                     w={"100%"}
                     marginTop={["8px", "15px", "12px"]}
                     fontSize={["8px", "9px", "16px"]}
-                    color={selectedplan === "SUPER" ? "#E2E8F0" : "white"}
-                  >
+                    color={selectedplan === "SUPER" ? "#E2E8F0" : "white"}>
                     <Box
                       p={["5px"]}
-                      borderBottom="1px solid rgba(46,51,51,0.4)"
-                    >
+                      borderBottom="1px solid rgba(46,51,51,0.4)">
                       <Box my={["5px", "10px"]}>
                         <CheckIcon /> <br />
                       </Box>
                       <Box
                         mt="-10px"
                         color="#3182CE"
-                        fontSize={["7px", "10px", "12px"]}
-                      ></Box>
+                        fontSize={["7px", "10px", "12px"]}></Box>
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
-                    >
+                      p={["4px", "5px"]}>
                       <CheckIcon />
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["12px", "5px"]}
-                    >
+                      p={["12px", "5px"]}>
                       <CheckIcon />
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["12px", "5px"]}
-                    >
+                      p={["12px", "5px"]}>
                       4
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["10px", "9px", "12px"]}
-                    >
+                      fontSize={["10px", "9px", "12px"]}>
                       4K (2160P)
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
                       p={["4px", "5px"]}
-                      fontSize={["10px", "9px", "12px"]}
-                    >
+                      fontSize={["10px", "9px", "12px"]}>
                       Dolby 5.1
                     </Box>
                   </Box>
@@ -498,18 +465,15 @@ function Login() {
                     selectedplan === "SUPER"
                       ? "rgba(31,128,224,0.4)"
                       : "transparent"
-                  }
-                >
+                  }>
                   <Flex
                     direction="column"
                     justifyContent="left"
-                    textAlign="left"
-                  >
+                    textAlign="left">
                     <Text
                       color={selectedplan === "SUPER" ? "#fedf7b" : "#D1D0D4"}
                       fontSize={"18px"}
-                      fontWeight={"bold"}
-                    >
+                      fontWeight={"bold"}>
                       Super
                     </Text>
                     <Text>₹899/Year</Text>
@@ -545,18 +509,15 @@ function Login() {
                     selectedplan === "PREMIUM"
                       ? "rgba(31,128,224,0.4)"
                       : "transparent"
-                  }
-                >
+                  }>
                   <Flex
                     direction="column"
                     justifyContent="left"
-                    textAlign="left"
-                  >
+                    textAlign="left">
                     <Text
                       color={selectedplan === "PREMIUM" ? "#fedf7b" : "#D1D0D4"}
                       fontSize={"18px"}
-                      fontWeight={"bold"}
-                    >
+                      fontWeight={"bold"}>
                       Premium
                     </Text>
                     <Text>₹1499/Year</Text>
@@ -592,20 +553,17 @@ function Login() {
                     selectedplan === "PREMIUM1"
                       ? "rgba(31,128,224,0.4)"
                       : "transparent"
-                  }
-                >
+                  }>
                   <Flex
                     direction="column"
                     justifyContent="left"
-                    textAlign="left"
-                  >
+                    textAlign="left">
                     <Text
                       color={
                         selectedplan === "PREMIUM1" ? "#fedf7b" : "#D1D0D4"
                       }
                       fontSize={"18px"}
-                      fontWeight={"bold"}
-                    >
+                      fontWeight={"bold"}>
                       Premium
                     </Text>
                     <Text>₹299/Month</Text>
@@ -630,8 +588,7 @@ function Login() {
                     w="95%"
                     colorScheme="blue"
                     _hover={{ backgroundColor: "#1E80E1" }}
-                    bg={"#1E80E1"}
-                  >
+                    bg={"#1E80E1"}>
                     CONTINUE WITH{" "}
                     {selectedplan === "SUPER" ? "SUPER" : "PREMIUM"} &nbsp;
                     <RxCaretRight size={"22px"} />
@@ -646,8 +603,7 @@ function Login() {
                     w="95%"
                     colorScheme="blue"
                     _hover={{ backgroundColor: "#1E80E1" }}
-                    bg={"#1E80E1"}
-                  >
+                    bg={"#1E80E1"}>
                     CONTINUE WITH{" "}
                     {selectedplan === "SUPER" ? "SUPER" : "PREMIUM"} &nbsp;
                     <RxCaretRight size={"22px"} />
@@ -658,15 +614,21 @@ function Login() {
           </Box>
 
           {/* ===================login with phone modal==================== */}
-          <Modal isOpen={isOpen} onClose={onClose} isCentered size="xl">
+          <Modal
+            isOpen={isOpen}
+            onClose={() => {
+              setChangepin(false);
+              onClose();
+            }}
+            isCentered
+            size="xl">
             <ModalOverlay />
             {changepin === false ? (
               <ModalContent
                 p={"25px"}
                 backgroundColor="#192133"
                 color={"white"}
-                padding="50px"
-              >
+                padding="50px">
                 <ModalHeader fontSize="25px" fontWeight="400" mt={"80px"}>
                   Login to continue
                 </ModalHeader>
@@ -678,15 +640,13 @@ function Login() {
                     p="10px"
                     bg="#16273f"
                     mt="40px"
-                    textAlign={"center"}
-                  >
+                    textAlign={"center"}>
                     <Button
                       fontSize="20px"
                       _hover={{}}
                       _active={{}}
                       bg="transparant"
-                      color="#1e75cc"
-                    >
+                      color="#1e75cc">
                       Have a Facebook/Email account ?
                     </Button>
                   </Box>
@@ -721,8 +681,7 @@ function Login() {
                     w="100%"
                     p={8}
                     fontSize={18}
-                    isDisabled={inputNumber.length < 10}
-                  >
+                    isDisabled={inputNumber.length < 10}>
                     CONTINUE
                     <ChevronRightIcon fontSize={25} />
                   </Button>
@@ -733,8 +692,7 @@ function Login() {
                 p={"25px"}
                 backgroundColor="#192133"
                 color={"white"}
-                padding="50px"
-              >
+                padding="50px">
                 <ModalHeader fontSize="25px" fontWeight="400" mt={"80px"}>
                   Enter the 4-digit code sent to <br /> +91******
                   {inputNumber.charAt(6)}
@@ -775,8 +733,7 @@ function Login() {
                       color: "#1f80e0",
                       marginTop: "15px",
                       fontWeight: "bolder",
-                    }}
-                  >
+                    }}>
                     RESEND CODE
                   </p>
                   {/* <InputGroup mt="40px" position="relative">
@@ -809,8 +766,7 @@ function Login() {
                     w="100%"
                     p={8}
                     fontSize={18}
-                    isDisabled={inputNumber.length < 10}
-                  >
+                    isDisabled={inputNumber.length < 10}>
                     CONTINUE
                     <ChevronRightIcon fontSize={25} />
                   </Button>

@@ -46,6 +46,7 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpenAct, openAct, closeAct } = useDisclosure();
   const isAuth = useSelector((state) => state.loginReducer.Auth);
+  const updated = useSelector((state) => state.loginReducer.updated);
   const searchResults = useSelector(
     (state) => state.movieReducer.searchResults
   );
@@ -56,7 +57,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState();
   const [debouncedText] = useDebounce(searchQuery, 1000);
-
+  const [plan, setPlan] = useState("base");
   const { name, phone } = JSON.parse(localStorage.getItem("userdetails")) || [];
 
   const handleClick = () => {
@@ -103,6 +104,13 @@ const Navbar = () => {
     dispatch(searchMovie({ query: debouncedText, key: "searchResults" }));
     return () => {};
   }, [debouncedText]);
+  useEffect(() => {
+    const sub = JSON.parse(localStorage.getItem("subscription")) || [];
+    const user = JSON.parse(localStorage.getItem("userdetails")) || [];
+    const newPlan = sub.package?.plan || user.package?.plan || "base";
+    setPlan(newPlan);
+    return () => {};
+  }, [updated]);
 
   return (
     <Flex
@@ -319,6 +327,13 @@ const Navbar = () => {
         }}>
         Disney+
       </Text>
+      <IconButton
+        bg={{}}
+        display={{ base: "none", sm: "none", md: "block" }}
+        icon={
+          <Image src="https://www.hotstar.com/assets/4aa70ede8904e16b7630300c09219c8e.svg" />
+        }
+      />
       <Spacer />
       <InputGroup
         w={inputWidth}
@@ -365,8 +380,19 @@ const Navbar = () => {
         children={<SearchIcon color="gray.300" />}
         className={navStyles.searchBtn}
         display={{ sm: "none", md: "none", lg: "none" }}></Box>
-      {isAuth ? (
-        <></>
+      {isAuth && plan ? (
+        <Button
+          variant={"ouline"}
+          display={{ base: "none", sm: "none", md: "block" }}
+          borderStyle="solid"
+          borderWidth={"initial"}
+          borderColor={plan == "base" ? "gray" : "#fedf7b"}
+          color={plan == "base" ? "gray" : "#fedf7b"}
+          onClick={() => {
+            navigate("/login");
+          }}>
+          {plan == "SUPER" ? "Super" : plan == "base" ? "Basic" : "Premium"}
+        </Button>
       ) : (
         <Button
           size="xs"
@@ -387,8 +413,7 @@ const Navbar = () => {
       <Flex
         display={{ base: "none", sm: "flex" }}
         w={"100px"}
-        justifyContent="center"
-      >
+        justifyContent="center">
         {isAuth ? (
           <Menu isOpen={isProfileOpen}>
             <MenuButton

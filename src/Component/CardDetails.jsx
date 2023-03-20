@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
 import { Textarea, HStack, Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { planforsubs } from "../Redux/loginredux/action";
+import { checkLogin, planforsubs } from "../Redux/loginredux/action";
+import { useDispatch } from "react-redux";
 
 function CardDetails() {
   const navigate = useNavigate();
   const expireRef = useRef();
   const planName = JSON.parse(localStorage.getItem("subscription"));
   const [expireToggle, setExpiretoggle] = useState(true);
+  const dispatch = useDispatch();
   const [inputcheck, setInputcheck] = useState({
     name: "",
     card: "",
@@ -18,7 +20,9 @@ function CardDetails() {
 
   const afterPayment = () => {
     alert("Payment Successfull");
-    planforsubs();
+    planforsubs().then(() => {
+      dispatch(checkLogin);
+    });
     navigate("/");
   };
   const handelInput = ({ value, name }) => {
@@ -91,14 +95,14 @@ function CardDetails() {
             }
             className="card-input"
             type="text"
-            maxlength="16"
+            maxLength="16"
             name="card"
             placeholder="Card Number"
           />
           <div className="card-input-cvv">
             <input
               className="card-input"
-              maxlength="5"
+              maxLength="5"
               type="text"
               placeholder="MM/YY"
               ref={expireRef}
@@ -113,7 +117,7 @@ function CardDetails() {
                 handelInput({ value: value, name: name })
               }
               className="card-input"
-              maxlength="3"
+              maxLength="3"
               type="text"
               name="cvvs"
               placeholder="CVV"
@@ -124,8 +128,7 @@ function CardDetails() {
             style={{
               display: "flex",
               padding: "20px",
-            }}
-          >
+            }}>
             <input
               style={{ fontSize: "15px" }}
               type="checkbox"
@@ -138,8 +141,7 @@ function CardDetails() {
                 fontSize: "10px",
                 textAlign: "left",
                 marginLeft: "15px",
-              }}
-            >
+              }}>
               I am over 18, and I agree to the above conditions and the{" "}
               <span style={{ color: "blue" }}>
                 Terms of Use and Privacy Policy
@@ -163,31 +165,28 @@ function CardDetails() {
             marginLeft="20px"
             onClick={() => {
               afterPayment();
-            }}
-          >
+            }}>
             START MEMBERSHIP
           </Button>
         </div>
         {/* -------------------------------------------------------- */}
 
         <div className="payment-page-low-text" style={{ marginLeft: "20px" }}>
-          <p>
-            <ul>
-              <li>
-                Your card will be securely stored as per RBI guidelines and you
-                will be charged ₹899 every year until you cancel. Click pay
-                securely to proceed
-              </li>
-              <li>
-                By Clicking Start Membership, you authorise us to charge your
-                card ₹899 once a year, until you cancel
-              </li>
-              <li>
-                Got questions? Please email us at hello@hotstar.com. We reply to
-                most emails within an hour.
-              </li>
-            </ul>
-          </p>
+          <ul>
+            <li>
+              Your card will be securely stored as per RBI guidelines and you
+              will be charged ₹899 every year until you cancel. Click pay
+              securely to proceed
+            </li>
+            <li>
+              By Clicking Start Membership, you authorise us to charge your card
+              ₹899 once a year, until you cancel
+            </li>
+            <li>
+              Got questions? Please email us at hello@hotstar.com. We reply to
+              most emails within an hour.
+            </li>
+          </ul>
         </div>
       </div>
     </div>

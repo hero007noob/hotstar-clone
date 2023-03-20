@@ -9,22 +9,51 @@ import {
   PinInput,
   PinInputField,
 } from "@chakra-ui/react";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getParentControls,
+  setParentControls,
+  updateParentControls,
+} from "../Redux/parentRedux/action";
+import Loader from "./Loader";
 
 function SetPassword() {
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const [input, setInput] = useState("");
-
+  const dispatch = useDispatch();
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // const isLock = useSelector((state) => state.parentReducer.isLocked);
   function handleKeyDown(event) {
     if (event.key === "Enter") {
       inputRef.current.focus();
     }
   }
-
-  return (
+  function handleContinue(event) {
+    setLoading(true);
+    updateParentControls(!isEnabled).then(() => {
+      dispatch(setParentControls({ value: !isEnabled }));
+      setLoading(false);
+      setIsEnabled(!isEnabled);
+    });
+  }
+  const checkParentControls = () => {
+    setLoading(true);
+    getParentControls().then((response) => {
+      setLoading(false);
+      setIsEnabled(response.status);
+    });
+  };
+  useEffect(() => {
+    checkParentControls();
+  }, []);
+  return loading ? (
+    <Loader />
+  ) : (
     <Box bg="#f3f3f3" color="black" width="100%" position="fixed">
       <Box width="600px" height="100vh" margin="auto">
         <Box>
@@ -49,8 +78,7 @@ function SetPassword() {
             cursor="pointer"
             onClick={() => {
               window.history.back();
-            }}
-          >
+            }}>
             <ChevronLeftIcon fontSize={30} />
             BACK
           </Box>
@@ -58,12 +86,14 @@ function SetPassword() {
         <Box bg="white" color="black" margin="30px 0" padding="20px">
           <Box>
             <Text fontSize="22px" fontWeight="500" marginBottom="10px">
-              Create PIN
+              {isEnabled ? "Disable Parental Lock" : "Create PIN"}
             </Text>
           </Box>
           <Box>
             <Text fontSize="18px" opacity={0.6}>
-              Please enter a 4-digit PIN to enable parental lock
+              {isEnabled
+                ? "Please enter a 4-digit PIN to disable parental lock"
+                : "Please enter a 4-digit PIN to enable parental lock"}
             </Text>
           </Box>
           {/* <HStack gap={"20px"} margin="20px 0">
@@ -137,8 +167,7 @@ function SetPassword() {
               onChange={(e) => {
                 console.log(e, input.length);
                 setInput(e);
-              }}
-            >
+              }}>
               <PinInputField
                 style={{ width: "60px", height: "60px", marginRight: "20px" }}
               />
@@ -169,7 +198,7 @@ function SetPassword() {
               color="white"
               size="lg"
               isDisabled={input.length < 4 ? true : false}
-            >
+              onClick={handleContinue}>
               Continue
               <ChevronRightIcon fontSize={25} />
             </Button>

@@ -18,8 +18,14 @@ import Profile from "../Component/Profile";
 import AccountSetting from "../Component/AccountSetting";
 import SetPassword from "../Component/SetPassword";
 import MobileFooter from "../Component/Navbar/MobileFooter";
+import { useSelector } from "react-redux";
+import PrivateRoute from "../Component/PrivateRoute";
 
 function AllRoutes() {
+  const isLock = useSelector((state) => state.parentReducer.isLocked);
+  React.useEffect(() => {
+    console.log("lock", isLock);
+  }, [isLock]);
   const routes = [
     {
       path: "/profile",
@@ -184,7 +190,13 @@ function AllRoutes() {
   return (
     <Routes>
       {routes.map((elem, i) => {
-        return <Route key={i} path={elem.path} element={elem.element} />;
+        return (
+          <Route
+            key={i}
+            path={elem.path}
+            element={<PrivateRoute>{elem.element}</PrivateRoute>}
+          />
+        );
       })}
     </Routes>
   );
