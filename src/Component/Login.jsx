@@ -249,7 +249,7 @@ function Login() {
           {/* -------------------subscription box-------------- */}
           <Box
             className="subscription-box"
-            // height={["400px", "500px"]}
+            height={["80vh"]}
             w={["90%", "85%", "60%"]}
             my="20px">
             <Grid
@@ -300,12 +300,12 @@ function Login() {
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}>
+                      p={["4px", "6px"]}>
                       Max video quality
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}>
+                      p={["4px", "6px"]}>
                       Max audio quality
                     </Box>
                   </Box>
@@ -361,13 +361,13 @@ function Login() {
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
+                      p={["4px", "6%"]}
                       fontSize={["10px", "9px", "12px"]}>
                       Full HD(1080p)
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
+                      p={["4px", "6%"]}
                       fontSize={["10px", "9px", "12px"]}>
                       Dolby 5.1
                     </Box>
@@ -429,13 +429,13 @@ function Login() {
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
+                      p={["4px", "6%"]}
                       fontSize={["10px", "9px", "12px"]}>
                       4K (2160P)
                     </Box>
                     <Box
                       borderBottom="1px solid rgba(46,51,51,0.4)"
-                      p={["4px", "5px"]}
+                      p={["4px", "6%"]}
                       fontSize={["10px", "9px", "12px"]}>
                       Dolby 5.1
                     </Box>
