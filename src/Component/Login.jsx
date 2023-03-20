@@ -254,11 +254,11 @@ function Login() {
             my="20px">
             <Grid
               marginTop="10px"
-              h="95%"
+              h="100%"
               templateRows="repeat(12, 1fr)"
               templateColumns="repeat(6, 1fr)"
               gap={4}>
-              <GridItem rowSpan={8} colSpan={6} p="8px" display="flex">
+              <GridItem rowSpan={8} colSpan={6} p="5%" display="flex">
                 {/* subscription top box */}
                 <GridItem w="60%" colSpan={4} paddingY="15px">
                   <Box
