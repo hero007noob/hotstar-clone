@@ -1,10 +1,12 @@
 import { Flex, Stack, Text } from "@chakra-ui/layout";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies } from "../../Redux/movies/action";
+import { getContinueWatching, getMovies } from "../../Redux/movies/action";
 import CardCarousel from "../Carousel/CardCarousel";
+import HorizontalCardCarousel from "../Carousel/HorizontalCardCarousel";
 import TopCarousel from "../Carousel/TopCarousel";
+import Loader from "../Loader";
 export default function Home() {
   const dispatch = useDispatch();
   const popular = useSelector((state) => state.movieReducer.popular);
@@ -12,28 +14,46 @@ export default function Home() {
   const grossing = useSelector((state) => state.movieReducer.grossing);
   const rated = useSelector((state) => state.movieReducer.rated);
   const viewed = useSelector((state) => state.movieReducer.viewed);
+  const loading = useSelector((state) => state.movieReducer.loading);
+  const [continueData, setContinueData] = useState([{}]);
+
   useEffect(() => {
-    dispatch(getMovies("popularity.desc", "popular"));
-    dispatch(getMovies("release_date.desc", "latest"));
-    dispatch(getMovies("revenue.desc", "grossing"));
-    dispatch(getMovies("vote_average.desc", "rated"));
-    dispatch(getMovies("vote_count.desc", "viewed"));
+    dispatch(getMovies({ sort: "popularity.desc", key: "popular" }));
+    dispatch(getMovies({ sort: "release_date.desc", key: "latest" }));
+    dispatch(getMovies({ sort: "revenue.desc", key: "grossing" }));
+    dispatch(getMovies({ sort: "vote_average.desc", key: "rated" }));
+    dispatch(getMovies({ sort: "vote_count.desc", key: "viewed" }));
     return () => {};
   }, []);
+
   useEffect(() => {
-    console.log("popular", popular);
+    getContinueWatching().then((res) => {
+      console.log("rescon", res);
+      // console.log('res');
+      setContinueData(res);
+    });
     return () => {};
   }, [popular]);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <Flex
       direction={"column"}
       background={"linear-gradient(to bottom, #141b29, #0c111b 300px)"}
       paddingBottom={"50px"}
-      w="100vw"
-      margin={"0"}
+      w="98vw"
+      margin={"0 auto"}
       overflow="hidden">
       <TopCarousel />
+      {Object.keys(continueData[0]).length > 0 && (
+        <HorizontalCardCarousel
+          data={continueData}
+          type={"movie"}
+          title={"Continue Watching"}
+          horizontal={true}
+        />
+      )}
       <CardCarousel data={popular} type={"movie"} title={"Popular Movies"} />
       <CardCarousel data={latest} type={"movie"} title={"Latest & Trending"} />
       <CardCarousel data={grossing} type={"movie"} title={"Top Grossing"} />

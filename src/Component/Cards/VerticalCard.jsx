@@ -2,14 +2,39 @@ import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Text } from "@chakra-ui/layout";
 import { capitalize, round, upperCase } from "lodash";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../CSS/verticalCard.module.css";
+import {
+  addToWishlist,
+  checkWishlist,
+  removeFromWishlist,
+} from "../../Redux/movies/action";
 export default function VerticalCard({ data, type }) {
   const [toggle, setToggle] = useState(true);
   const navigate = useNavigate();
-  console.log(data);
   const imagBaseUrl = "https://image.tmdb.org/t/p/original";
+  const addWishlist = (data) => {
+    console.log("addToWishlist", data);
+    addToWishlist(data);
+  };
+  const removeWishlist = (id) => {
+    console.log("removeFromWishlist", id);
+    removeFromWishlist(id);
+  };
+  const isWishlisted = async () => {
+    let exist = await checkWishlist(data.id);
+    // console.log("exist: ", exist);
+    // console.log(exist ? "exist: oh yea " : "what");
+    if (exist) {
+      setToggle(false);
+    }
+    return () => {};
+  };
+  useEffect(() => {
+    isWishlisted(data.id);
+  }, []);
+
   return (
     <div style={{ padding: "10px", height: "100%" }}>
       <div
@@ -68,7 +93,10 @@ export default function VerticalCard({ data, type }) {
             textAlign="left"
             justifyContent={"left"}
             h={"16%"}
-            onClick={() => setToggle((tog) => !tog)}>
+            onClick={() => {
+              toggle ? addWishlist(data) : removeWishlist(data.id);
+              setToggle((tog) => !tog);
+            }}>
             {toggle
               ? upperCase("Add to Watchlist")
               : upperCase("Remove from Watchlist")}

@@ -20,6 +20,7 @@
 }
 .container:hover {
   transform: scale(1.2);
+  z-index: 2 !important;
 }
 .container:hover .text_container {
   opacity: 1;

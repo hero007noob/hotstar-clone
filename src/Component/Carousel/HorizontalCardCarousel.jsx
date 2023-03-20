@@ -8,23 +8,29 @@ import "react-multi-carousel/lib/styles.css";
 import BannerImage from "../BannerImage/BannerImage";
 import VerticalCard from "../Cards/VerticalCard";
 import styles from "../../CSS/CardCarousel.module.css";
-export default function CardCarousel({ data, type, title, mt = "100px" }) {
+import HorizontalCard from "../Cards/HorizontalCard";
+export default function HorizontalCardCarousel({
+  data,
+  type,
+  title,
+  mt = "100px",
+}) {
   console.log("um", data);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 10,
+      items: 5,
       partialVisibilityGutter: 40,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1440 },
-      items: 7,
+      items: 4,
       partialVisibilityGutter: 40,
     },
     smallerDesktop: {
       breakpoint: { max: 1440, min: 1024 },
-      items: 5,
+      items: 3,
       partialVisibilityGutter: 40,
     },
     tablet: {
@@ -46,8 +52,7 @@ export default function CardCarousel({ data, type, title, mt = "100px" }) {
   return (
     <Box
       w={"100%"}
-      h={"400px"}
-      marginY={"30px"}
+      h={"300px"}
       alignItems={"center"}
       verticalAlign={true}
       justifyContent={"center"}
@@ -75,15 +80,15 @@ export default function CardCarousel({ data, type, title, mt = "100px" }) {
         infinite={true}
         keyBoardControl={true}
         slidesToSlide={7}
-        containerClass={styles.carousel_container}
+        containerClass={styles.horizontal_carousel_container}
         removeArrowOnDeviceType={["tablet", "largeMobiles", "mobile"]}
         itemClass={styles.carousel_item}
         customLeftArrow={<CustomLeft />}
         customRightArrow={<CustomRight />}>
-        {data != undefined &&
+        {data &&
+          data != undefined &&
           data.map((item) => {
-            if (item.poster_path != undefined)
-              return <VerticalCard data={item} type={type} />;
+            return <HorizontalCard data={item} type={type} />;
           })}
       </Carousel>
     </Box>
