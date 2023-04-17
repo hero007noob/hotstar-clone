@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Textarea, HStack, Button } from "@chakra-ui/react";
+import { Textarea, HStack, Button, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { checkLogin, planforsubs } from "../Redux/loginredux/action";
 import { useDispatch } from "react-redux";
@@ -18,12 +18,23 @@ function CardDetails() {
     check: false,
   });
 
+  const toastRef = useRef();
+  let toast = useToast();
+
+  function close() {
+    if (toastRef.current) {
+      toast.close(toastRef.current);
+    }
+  }
+
   const afterPayment = () => {
-    alert("Payment Successfull");
     planforsubs().then(() => {
       dispatch(checkLogin);
     });
-    navigate("/");
+    setTimeout(() => {
+      close();
+      navigate("/");
+    }, 2000);
   };
   const handelInput = ({ value, name }) => {
     console.log(inputcheck);
@@ -128,7 +139,8 @@ function CardDetails() {
             style={{
               display: "flex",
               padding: "20px",
-            }}>
+            }}
+          >
             <input
               style={{ fontSize: "15px" }}
               type="checkbox"
@@ -141,7 +153,8 @@ function CardDetails() {
                 fontSize: "10px",
                 textAlign: "left",
                 marginLeft: "15px",
-              }}>
+              }}
+            >
               I am over 18, and I agree to the above conditions and the{" "}
               <span style={{ color: "blue" }}>
                 Terms of Use and Privacy Policy
@@ -165,7 +178,18 @@ function CardDetails() {
             marginLeft="20px"
             onClick={() => {
               afterPayment();
-            }}>
+              toastRef.current = toast({
+                position: "top",
+
+                title: "Payment Successfull",
+                description:
+                  "Congatulation ! Now Enjoy More Content On Hotstar ",
+                status: "success",
+                duration: 1500,
+                isClosable: true,
+              });
+            }}
+          >
             START MEMBERSHIP
           </Button>
         </div>
