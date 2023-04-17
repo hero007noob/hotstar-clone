@@ -12,6 +12,8 @@ function ProductDetail(props) {
   const parms = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [plan, setPlan] = useState("base");
+  const updated = useSelector((state) => state.loginReducer.updated);
   console.log("params", parms);
   let [key, setkey] = useState({
     backdrop_path: "",
@@ -40,10 +42,21 @@ function ProductDetail(props) {
   useEffect(() => {
     isWishlisted();
   }, [key]);
+
   useEffect(() => {
     getID();
     window.scrollTo(0, 0);
   }, [parms.id]);
+
+  useEffect(() => {
+    const sub = JSON.parse(localStorage.getItem("subscription")) || [];
+    const user = JSON.parse(localStorage.getItem("userdetails")) || [];
+    const newPlan = sub?.package?.plan || user?.package?.plan || "base";
+    console.log("plan to be", newPlan);
+    setPlan(newPlan);
+    return () => {};
+  }, [updated]);
+
   const similar = useSelector((state) => state.movieReducer.similar);
   const lastYear = new Date(
     new Date().setFullYear(new Date().getFullYear() - 1)
@@ -90,7 +103,7 @@ function ProductDetail(props) {
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-play-fill"
+                  className="bi bi-play-fill"
                   viewBox="0 0 16 16">
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                 </svg>
@@ -104,14 +117,19 @@ function ProductDetail(props) {
               <button
                 className={Styles.btn}
                 onClick={() => {
-                  navigate(`/play/${parms.type}/${parms.id}`);
+                  if (
+                    plan == "base" &&
+                    Date.parse(key.release_date) > lastYear
+                  ) {
+                    navigate("/login");
+                  } else navigate(`/play/${parms.type}/${parms.id}`);
                 }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-play-fill"
+                  className="bi bi-play-fill"
                   viewBox="0 0 16 16">
                   <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
                 </svg>
@@ -135,6 +153,8 @@ function ProductDetail(props) {
                 className={Styles.btn}
                 direction="column"
                 alignItems="center"
+                display={"flex"}
+                justifyContent="center"
                 mb="0"
                 pb="0"
                 h="100%">
@@ -143,7 +163,7 @@ function ProductDetail(props) {
                   width="20"
                   height="20"
                   fill="currentColor"
-                  class="bi bi-share-fill"
+                  className="bi bi-share-fill"
                   viewBox="0 0 16 16">
                   <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
                 </svg>

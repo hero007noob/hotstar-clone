@@ -654,7 +654,7 @@ function Login() {
                     <InputLeftAddon
                       position="absolute"
                       left="-2"
-                      bottom={0.5}
+                      // bottom={0.5}
                       border={"none"}
                       bg="transparent"
                       children="+91 | "
