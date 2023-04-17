@@ -55,23 +55,25 @@ const Navbar = () => {
   const inputRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
   const [debouncedText] = useDebounce(searchQuery, 1000);
   const [plan, setPlan] = useState("base");
   const { name, phone } = JSON.parse(localStorage.getItem("userdetails")) || [];
 
   const handleClick = () => {
-    setInputWidth("400px");
+    // setInputWidth("400px");
     searchRef.current.style.display = "block";
   };
 
   const handleBlur = () => {
-    setInputWidth("200px");
+    // setInputWidth("200px");
+    // setSearchQuery("");
     // closeSearch();
   };
   const closeSearch = () => {
-    searchRef.current.style.display = "none";
-    inputRef.current.value = "";
+    // searchRef.current.style.display = "none";
+    // inputRef.current.value = "";
+    setSearchQuery("");
     dispatch(searchMovie({ query: "", key: "searchResults" }));
   };
   const handleMouseEnter = () => {
@@ -121,7 +123,8 @@ const Navbar = () => {
       color="white"
       w="100%"
       position="fixed"
-      zIndex={10}>
+      zIndex={10}
+    >
       <Menu isOpen={isOpenMenu}>
         <MenuButton
           onMouseEnter={handleMouseEnter}
@@ -153,7 +156,8 @@ const Navbar = () => {
           isOpen={isOpen}
           placement="left"
           onClose={onClose}
-          finalFocusRef={btnRef}>
+          finalFocusRef={btnRef}
+        >
           <DrawerOverlay />
           <DrawerContent bg={"#192133"}>
             <DrawerCloseButton />
@@ -166,7 +170,8 @@ const Navbar = () => {
                   color={"white"}
                   fontSize="16px"
                   fontWeight={400}
-                  opacity={0.6}>
+                  opacity={0.6}
+                >
                   {isAuth ? phone : "For a better experience"}
                 </Text>
               </Box>
@@ -187,7 +192,8 @@ const Navbar = () => {
                 }}
                 color={"white"}
                 opacity={0.8}
-                margin="40px 0">
+                margin="40px 0"
+              >
                 <Image
                   boxSize="1.4rem"
                   src="https://lh3.ggpht.com/MPndj4KtVlLgFC1IC2BE6e2Gbx_ylMCnWnbIUduAMhmQ3KZowrQtHq_BgaPGsH6onwrP=w1200-h630-p-k-no-nu"
@@ -201,7 +207,8 @@ const Navbar = () => {
                   onClick={onClose}
                   color={"white"}
                   opacity={0.8}
-                  margin="40px 0">
+                  margin="40px 0"
+                >
                   <Image
                     boxSize="1.4rem"
                     src="https://ec.europa.eu/eurostat/cros/profiles/multisite_drupal_standard/modules/features/nexteuropa_multilingual/theme/language-icon.png"
@@ -216,7 +223,8 @@ const Navbar = () => {
                   onClick={onClose}
                   color={"white"}
                   opacity={0.8}
-                  margin="40px 0">
+                  margin="40px 0"
+                >
                   <Image
                     boxSize="1.4rem"
                     src="https://cdn2.iconfinder.com/data/icons/movie-icons/512/Theatre_Masks-1024.png"
@@ -237,7 +245,8 @@ const Navbar = () => {
           bg="#192133"
           border="none"
           minW="150px"
-          borderRadius="0">
+          borderRadius="0"
+        >
           <MenuItem
             bg="#192133"
             opacity="0.8"
@@ -245,7 +254,8 @@ const Navbar = () => {
             _hover={{ bg: "#0c111b", opacity: "1" }}
             onClick={() => {
               navigate("/channels");
-            }}>
+            }}
+          >
             <Image
               boxSize="1.4rem"
               src="https://lh3.ggpht.com/MPndj4KtVlLgFC1IC2BE6e2Gbx_ylMCnWnbIUduAMhmQ3KZowrQtHq_BgaPGsH6onwrP=w1200-h630-p-k-no-nu"
@@ -258,7 +268,8 @@ const Navbar = () => {
             bg="#192133"
             color="white"
             opacity="0.8"
-            _hover={{ bg: "#0c111b", opacity: "1" }}>
+            _hover={{ bg: "#0c111b", opacity: "1" }}
+          >
             <Image
               boxSize="1.4rem"
               src="https://ec.europa.eu/eurostat/cros/profiles/multisite_drupal_standard/modules/features/nexteuropa_multilingual/theme/language-icon.png"
@@ -276,7 +287,8 @@ const Navbar = () => {
             _hover={{ bg: "#0c111b", opacity: "1" }}
             onClick={() => {
               navigate("/genre");
-            }}>
+            }}
+          >
             <Image
               boxSize="1.4rem"
               src="https://cdn2.iconfinder.com/data/icons/movie-icons/512/Theatre_Masks-1024.png"
@@ -310,7 +322,8 @@ const Navbar = () => {
         w={{ sm: "60px", md: "80px" }}
         onClick={() => {
           navigate("/login");
-        }}>
+        }}
+      >
         SUBSCRIBE
       </Button>
       <Tv />
@@ -324,7 +337,8 @@ const Navbar = () => {
         cursor="pointer"
         onClick={() => {
           navigate("/");
-        }}>
+        }}
+      >
         Disney+
       </Text>
       <IconButton
@@ -336,19 +350,21 @@ const Navbar = () => {
       />
       <Spacer />
       <InputGroup
-        w={inputWidth}
+        w={searchQuery === "" ? "200px" : "400px"}
         mr="6"
         onClick={handleClick}
         onBlur={handleBlur}
         transition="width 0.2s ease-in-out"
         className={navStyles.searchBox}
-        display={{ sm: "block", md: "block", lg: "block" }}>
+        display={{ sm: "block", md: "block", lg: "block" }}
+      >
         <Input
           type="text"
           placeholder="Search"
           _placeholder={{ opacity: 0.8, color: "white" }}
           size="md"
           ref={inputRef}
+          value={searchQuery}
           variant="flushed"
           onChange={handleChange}
         />
@@ -367,7 +383,8 @@ const Navbar = () => {
           overflow="hidden"
           overflowY="scroll"
           // onClose={closeAct}
-          p="1%">
+          p="1%"
+        >
           {searchResults &&
             searchResults.length > 2 &&
             searchResults.map((item, i) => (
@@ -379,7 +396,8 @@ const Navbar = () => {
         pointerEvents="none"
         children={<SearchIcon color="gray.300" />}
         className={navStyles.searchBtn}
-        display={{ sm: "none", md: "none", lg: "none" }}></Box>
+        display={{ sm: "none", md: "none", lg: "none" }}
+      ></Box>
       {isAuth && plan ? (
         <Button
           variant={"ouline"}
@@ -390,7 +408,8 @@ const Navbar = () => {
           color={plan == "base" ? "gray" : "#fedf7b"}
           onClick={() => {
             navigate("/login");
-          }}>
+          }}
+        >
           {plan == "SUPER" ? "Super" : plan == "base" ? "Basic" : "Premium"}
         </Button>
       ) : (
@@ -405,7 +424,8 @@ const Navbar = () => {
           w={{ sm: "70px", md: "80px" }}
           onClick={() => {
             navigate("/login");
-          }}>
+          }}
+        >
           SUBSCRIBE
         </Button>
       )}
@@ -413,7 +433,8 @@ const Navbar = () => {
       <Flex
         display={{ base: "none", sm: "flex" }}
         w={"100px"}
-        justifyContent="center">
+        justifyContent="center"
+      >
         {isAuth ? (
           <Menu isOpen={isProfileOpen}>
             <MenuButton
@@ -438,7 +459,8 @@ const Navbar = () => {
               bg="#192133"
               border="none"
               minW="100px"
-              borderRadius="5px">
+              borderRadius="5px"
+            >
               <MenuItem
                 bg="#192133"
                 opacity="0.9"
@@ -447,7 +469,8 @@ const Navbar = () => {
                 _hover={{ bg: "#0c111b", opacity: "1" }}
                 onClick={() => {
                   navigate("/wishlist");
-                }}>
+                }}
+              >
                 Watchlist
               </MenuItem>
               <MenuItem
@@ -458,7 +481,8 @@ const Navbar = () => {
                 _hover={{ bg: "#0c111b", opacity: "1" }}
                 onClick={() => {
                   navigate("/profile");
-                }}>
+                }}
+              >
                 My Account
               </MenuItem>
               <MenuItem
@@ -470,7 +494,8 @@ const Navbar = () => {
                 onClick={() => {
                   dispatch(Logoutfun());
                   navigate("/");
-                }}>
+                }}
+              >
                 Log Out
               </MenuItem>
             </MenuList>
@@ -484,7 +509,8 @@ const Navbar = () => {
             fontSize={{ sm: "12px", md: "16px" }}
             onClick={() => {
               navigate("/login");
-            }}>
+            }}
+          >
             LOGIN
           </Button>
         )}
