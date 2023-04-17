@@ -454,7 +454,7 @@ function Login() {
                   className="bottom-button"
                   mx={["5px", "2px", "5px"]}
                   color="white"
-                  h="95%"
+                  h="65%"
                   w="30%"
                   colorScheme="teal"
                   variant="outline"
@@ -496,7 +496,7 @@ function Login() {
                   className="bottom-button"
                   mx={["5px", "2px", "5px"]}
                   color="white"
-                  h="95%"
+                  h="65%"
                   w="30%"
                   colorScheme="teal"
                   variant="outline"
@@ -540,7 +540,7 @@ function Login() {
                   className="bottom-button"
                   mx={["5px", "2px", "5px"]}
                   color="white"
-                  h="95%"
+                  h="65%"
                   w="30%"
                   colorScheme="teal"
                   variant="outline"
