@@ -24,6 +24,8 @@ import {
   HStack,
   PinInput,
   PinInputField,
+  IconButton,
+  useToast,
 } from "@chakra-ui/react";
 
 import { CheckIcon, ChevronRightIcon, CloseIcon } from "@chakra-ui/icons";
@@ -32,6 +34,7 @@ import { useNavigate } from "react-router-dom";
 import { checkLogin, getAuth, Logoutfun } from "../Redux/loginredux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { changeISAuthLogin } from "../Redux/loginredux/action";
+import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 import axios from "axios";
 // const style={
 //     // backgroundImage:("../Images/login-background.jpg")
@@ -49,8 +52,9 @@ function Login() {
   const isAuth = useSelector((state) => {
     return state.loginReducer.Auth;
   });
-
+  const toast = useToast();
   const [inputNumber, setInputNumber] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
 
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
@@ -61,6 +65,30 @@ function Login() {
     // onDeviceOpen();
   }, [isAuth, changepin]);
 
+  const handleLoginSubmit = () => {
+    let validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (inputNumber.length > 10) {
+      toast({
+        title: "Invalid Input",
+        description: "Phone number must be 10 digits",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    } else if (!inputEmail.match(validRegex)) {
+      toast({
+        title: "Invalid Input",
+        description: "Please Check Your Email",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+    console.log(inputNumber, inputEmail);
+  };
   const handleSubmit = () => {
     getAuth({ input: inputNumber })
       .then((x) => {
@@ -72,6 +100,7 @@ function Login() {
         onDeviceOpen();
       });
     setInputNumber("");
+    setInputEmail("");
     onClose();
   };
 
@@ -657,7 +686,7 @@ function Login() {
                       // bottom={0.5}
                       border={"none"}
                       bg="transparent"
-                      children="+91 | "
+                      children={<HiOutlinePhone />}
                       fontSize="20px"
                     />
                     <Input
@@ -665,17 +694,39 @@ function Login() {
                       pl="60px"
                       fontSize="20px"
                       maxLength={"10"}
+                      type="number"
+                      required
                       placeholder="Enter your mobile number"
                       _placeholder={{ fontSize: "20px" }}
                       onChange={(e) => setInputNumber(e.target.value)}
+                    />
+                  </InputGroup>
+                  <InputGroup mt="40px" position="relative">
+                    <InputLeftAddon
+                      position="absolute"
+                      left="-2"
+                      border={"none"}
+                      bg="transparent"
+                      children={<HiOutlineMail />}
+                      fontSize="20px"
+                    />
+                    <Input
+                      variant="flushed"
+                      pl="60px"
+                      type="email"
+                      fontSize="20px"
+                      maxLength={"10"}
+                      placeholder="Enter your Email"
+                      _placeholder={{ fontSize: "20px" }}
+                      onChange={(e) => setInputEmail(e.target.value)}
                     />
                   </InputGroup>
                 </ModalBody>
 
                 <ModalFooter justifyContent={"center"}>
                   <Button
-                    // onClick={handleSubmit}
-                    onClick={() => setChangepin(true)}
+                    onClick={handleLoginSubmit}
+                    // onClick={() => setChangepin(true)}
                     colorScheme="blue"
                     mr={3}
                     w="100%"
