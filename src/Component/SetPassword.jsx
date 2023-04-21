@@ -45,7 +45,7 @@ function SetPassword() {
     setLoading(true);
     getParentControls().then((response) => {
       setLoading(false);
-      setIsEnabled(response.status);
+      setIsEnabled(response.parentalLock);
     });
   };
   useEffect(() => {

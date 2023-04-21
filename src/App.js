@@ -17,7 +17,7 @@ function App() {
   const checkParentControls = () => {
     getParentControls().then((response) => {
       console.log('RES', response);
-      let x = response.status
+      let x = response.parentalLock
       dispatch(setParentControls({ value: x }));
     })
   }

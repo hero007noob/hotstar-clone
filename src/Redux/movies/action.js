@@ -59,13 +59,18 @@ const searchMovie = ({ query, key }) => {
   };
 };
 const removeFromWishlist = async (id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   let config = {
-    method: "delete",
+    method: "post",
     maxBodyLength: Infinity,
-    url: `${process.env.REACT_APP_BASE_URL}/wishlist/${id}`,
-    headers: {},
+    url: `${process.env.REACT_APP_BASE_URL}/user/watch-list`,
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ data: { id: id } })
   };
-
+  console.log('removing watch', JSON.stringify({ data: { id: id } }));
   axios
     .request(config)
     .then((response) => {
@@ -76,14 +81,16 @@ const removeFromWishlist = async (id) => {
     });
 };
 const addToWishlist = async (body) => {
-  let data = JSON.stringify(body);
-
+  const token = JSON.parse(localStorage.getItem("token"));
+  let data = JSON.stringify({ data: body });
+  console.log('adding to wishlist', data);
   let config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: `${process.env.REACT_APP_BASE_URL}/wishlist`,
+    url: `${process.env.REACT_APP_BASE_URL}/user/watch-list`,
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
     },
     data: data,
   };
@@ -99,16 +106,23 @@ const addToWishlist = async (body) => {
 };
 const addToContinue = async (id) => {
   let url = `https://api.themoviedb.org/3/movie/${id}?api_key=24ca5a64d4833b96467da5ed3580a957&language=en-US`;
-  let res = await axios.get(url);
+  const token = JSON.parse(localStorage.getItem("token"));
+  let res = await axios.get(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
 
-  let data = JSON.stringify(res.data);
+  let data = JSON.stringify({ data: res.data });
+  console.log("adding cont data: ", data);
 
   let config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: `${process.env.REACT_APP_BASE_URL}/continue`,
+    url: `${process.env.REACT_APP_BASE_URL}/user/continue-watching`,
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
     },
     data: data,
   };
@@ -124,18 +138,23 @@ const addToContinue = async (id) => {
 };
 const getWishlistData = async (id) => {
   return new Promise((resolve, reject) => {
+    const token = JSON.parse(localStorage.getItem("token"));
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_BASE_URL}/wishlist`,
-      headers: {},
+      url: `${process.env.REACT_APP_BASE_URL}/user/watch-list`,
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
+      },
     };
 
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        resolve(response.data);
+        console.log(JSON.stringify(response.data));
+        localStorage.setItem("watchList", JSON.stringify(response.data.data));
+        resolve(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -144,18 +163,22 @@ const getWishlistData = async (id) => {
 };
 const getContinueWatching = async (id) => {
   return new Promise((resolve, reject) => {
+    const token = JSON.parse(localStorage.getItem("token"));
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_BASE_URL}/continue`,
-      headers: {},
+      url: `${process.env.REACT_APP_BASE_URL}/user/continue-watching`,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
     };
 
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        resolve([response.data]);
+        console.log('continue watch', JSON.stringify(response.data.data));
+        resolve(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -164,26 +187,51 @@ const getContinueWatching = async (id) => {
 };
 const checkWishlist = (id) => {
   return new Promise((resolve, reject) => {
-    let config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_BASE_URL}/wishlist?id=${id}`,
-      headers: {},
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        // console.log(JSON.stringify(response.data));
-        if (response.data.length > 0) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const watchlist = JSON.parse(localStorage.getItem("watchList")) || [];
+      let found = watchlist.find((item) => {
+        return item.id == id;
       })
-      .catch((error) => {
+      console.log('watch list found', found);
+
+      if (found) {
+        resolve(true);
+      } else {
         resolve(false);
-      });
+      }
+    } catch (error) {
+
+    }
+
+    // let config = {
+    //   method: "get",
+    //   maxBodyLength: Infinity,
+    //   url: `${process.env.REACT_APP_BASE_URL}/user/watch-list`,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     'Authorization': `Bearer ${token}`
+    //   },
+    // };
+
+    // axios
+    //   .request(config)
+    //   .then((response) => {
+    //     // console.log(JSON.stringify(response.data));
+    //     let watchlist = response.data.data || [];
+    //     let found = watchlist.find((item) => {
+    //       return item.id == id;
+    //     })
+    //     console.log("found: ", found);
+    //     if (found) {
+    //       resolve(true);
+    //     } else {
+    //       resolve(false);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     resolve(false);
+    //   });
   });
 };
 const movieData = (data) => {

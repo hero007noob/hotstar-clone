@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
 import { Textarea, HStack, Button, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { checkLogin, planforsubs } from "../Redux/loginredux/action";
+import {
+  checkLogin,
+  planforsubs,
+  updateUserDetails,
+} from "../Redux/loginredux/action";
 import { useDispatch } from "react-redux";
 
 function CardDetails() {
@@ -29,7 +33,9 @@ function CardDetails() {
 
   const afterPayment = () => {
     planforsubs().then(() => {
-      dispatch(checkLogin);
+      updateUserDetails().then(() => {
+        dispatch(checkLogin);
+      });
     });
     setTimeout(() => {
       close();
@@ -139,8 +145,7 @@ function CardDetails() {
             style={{
               display: "flex",
               padding: "20px",
-            }}
-          >
+            }}>
             <input
               style={{ fontSize: "15px" }}
               type="checkbox"
@@ -153,8 +158,7 @@ function CardDetails() {
                 fontSize: "10px",
                 textAlign: "left",
                 marginLeft: "15px",
-              }}
-            >
+              }}>
               I am over 18, and I agree to the above conditions and the{" "}
               <span style={{ color: "blue" }}>
                 Terms of Use and Privacy Policy
@@ -188,8 +192,7 @@ function CardDetails() {
                 duration: 1500,
                 isClosable: true,
               });
-            }}
-          >
+            }}>
             START MEMBERSHIP
           </Button>
         </div>

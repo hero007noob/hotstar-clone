@@ -10,11 +10,14 @@ const setParentControls = ({ value }) => {
 
 const getParentControls = async () => {
   return new Promise((resolve, reject) => {
+    const token = JSON.parse(localStorage.getItem("token"));
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_BASE_URL}/parentalLock`,
-      headers: {},
+      url: `${process.env.REACT_APP_BASE_URL}/user/get-details`,
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
     };
 
     axios
@@ -30,18 +33,15 @@ const getParentControls = async () => {
 };
 export const updateParentControls = async (status) => {
   return new Promise((resolve, reject) => {
-    let data = JSON.stringify({
-      status: status,
-    });
-
+    const token = JSON.parse(localStorage.getItem("token"));
+    console.log('parental lock status: ' + status);
     let config = {
-      method: "post",
+      method: "get",
       maxBodyLength: Infinity,
-      url: `${process.env.REACT_APP_BASE_URL}/parentalLock`,
+      url: status ? `${process.env.REACT_APP_BASE_URL}/user/enable-parental-lock` : `${process.env.REACT_APP_BASE_URL}/user/disable-parental-lock`,
       headers: {
-        "Content-Type": "application/json",
+        'Authorization': `Bearer ${token}`
       },
-      data: data,
     };
 
     axios

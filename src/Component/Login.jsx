@@ -30,8 +30,13 @@ import {
 
 import { CheckIcon, ChevronRightIcon, CloseIcon } from "@chakra-ui/icons";
 import { RxCaretRight } from "react-icons/rx";
-import { useNavigate } from "react-router-dom";
-import { checkLogin, getAuth, Logoutfun } from "../Redux/loginredux/action";
+import { json, useNavigate } from "react-router-dom";
+import {
+  checkLogin,
+  getAuth,
+  loginUser,
+  Logoutfun,
+} from "../Redux/loginredux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { changeISAuthLogin } from "../Redux/loginredux/action";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
@@ -55,6 +60,7 @@ function Login() {
   const toast = useToast();
   const [inputNumber, setInputNumber] = useState("");
   const [inputEmail, setInputEmail] = useState("");
+  const [pin, setPin] = useState("");
 
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
@@ -65,7 +71,7 @@ function Login() {
     // onDeviceOpen();
   }, [isAuth, changepin]);
 
-  const handleLoginSubmit = () => {
+  const handleLoginSubmit = async () => {
     let validRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (inputNumber.length > 10) {
@@ -88,15 +94,33 @@ function Login() {
       return;
     }
     console.log(inputNumber, inputEmail);
+    let res = await loginUser({ phone: inputNumber, email: inputEmail });
+    localStorage.setItem("loginResponse", JSON.stringify(res));
+    if (res) setChangepin((pin) => !pin);
   };
-  const handleSubmit = () => {
-    getAuth({ input: inputNumber })
+  const handleSubmit = async () => {
+    let res = JSON.parse(localStorage.getItem("loginResponse"));
+    console.log(pin, res.otp, pin == res.otp);
+    if (pin != res.otp) {
+      toast({
+        title: "Invalid Input",
+        description: "Please check your otp",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+    localStorage.setItem("token", JSON.stringify(res.token));
+    console.log("loginResponse: ", res);
+    getAuth({ input: inputNumber, token: res.token })
       .then((x) => {
         console.log("resolved", x);
         dispatch(checkLogin());
       })
       .catch((y) => {
         console.log("reject", y);
+        handleLogout();
         onDeviceOpen();
       });
     setInputNumber("");
@@ -127,18 +151,21 @@ function Login() {
       let plan = {
         plan: "SUPER",
         price: "₹899/Year",
+        devices: 2,
       };
       localStorage.setItem("subscription", JSON.stringify(plan));
     } else if (selectedplan === "PREMIUM") {
       let plan = {
         plan: "PREMIUM",
         price: "₹1499/Year",
+        devices: 4,
       };
       localStorage.setItem("subscription", JSON.stringify(plan));
     } else if (selectedplan === "PREMIUM1") {
       let plan = {
         plan: "PREMIUM",
         price: "₹299/Year",
+        devices: 4,
       };
       localStorage.setItem("subscription", JSON.stringify(plan));
     }
@@ -715,7 +742,6 @@ function Login() {
                       pl="60px"
                       type="email"
                       fontSize="20px"
-                      maxLength={"10"}
                       placeholder="Enter your Email"
                       _placeholder={{ fontSize: "20px" }}
                       onChange={(e) => setInputEmail(e.target.value)}
@@ -745,11 +771,15 @@ function Login() {
                 color={"white"}
                 padding="50px">
                 <ModalHeader fontSize="25px" fontWeight="400" mt={"80px"}>
-                  Enter the 4-digit code sent to <br /> +91******
-                  {inputNumber.charAt(6)}
-                  {inputNumber.charAt(7)}
-                  {inputNumber.charAt(8)}
-                  {inputNumber.charAt(9)}
+                  Enter the 4-digit code sent to <br />
+                  {inputEmail.charAt(0)}
+                  {inputEmail.charAt(1)}
+                  {inputEmail.charAt(2)}
+                  ******
+                  {inputEmail.charAt(inputEmail.length - 4)}
+                  {inputEmail.charAt(inputEmail.length - 3)}
+                  {inputEmail.charAt(inputEmail.length - 2)}
+                  {inputEmail.charAt(inputEmail.length - 1)}
                 </ModalHeader>
                 <ModalCloseButton size={"lg"} margin="20px" />
                 <ModalBody pb={6}>
@@ -772,7 +802,10 @@ function Login() {
                     </Button>
                   </Box> */}
                   <HStack>
-                    <PinInput variant={"flushed"} placeholder=" ">
+                    <PinInput
+                      variant={"flushed"}
+                      placeholder=" "
+                      onChange={(value) => setPin(value)}>
                       <PinInputField style={{ marginRight: "10px" }} />
                       <PinInputField style={{ marginRight: "10px" }} />
                       <PinInputField style={{ marginRight: "10px" }} />

@@ -2,7 +2,11 @@ import { Flex, Stack, Text } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
 import { Box } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getContinueWatching, getMovies } from "../../Redux/movies/action";
+import {
+  getContinueWatching,
+  getMovies,
+  getWishlistData,
+} from "../../Redux/movies/action";
 import CardCarousel from "../Carousel/CardCarousel";
 import HorizontalCardCarousel from "../Carousel/HorizontalCardCarousel";
 import TopCarousel from "../Carousel/TopCarousel";
@@ -18,6 +22,7 @@ export default function Home() {
   const [continueData, setContinueData] = useState([{}]);
 
   useEffect(() => {
+    getWishlistData();
     dispatch(getMovies({ sort: "popularity.desc", key: "popular" }));
     dispatch(getMovies({ sort: "release_date.desc", key: "latest" }));
     dispatch(getMovies({ sort: "revenue.desc", key: "grossing" }));
@@ -46,9 +51,9 @@ export default function Home() {
       margin={"0 auto"}
       overflow="hidden">
       <TopCarousel />
-      {Object.keys(continueData[0]).length > 0 && (
+      {Object.keys(continueData).length > 0 && (
         <HorizontalCardCarousel
-          data={continueData}
+          data={[continueData]}
           type={"movie"}
           title={"Continue Watching"}
           horizontal={true}

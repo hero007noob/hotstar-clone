@@ -52,7 +52,7 @@ function Profile(props) {
     let config = {
       method: "patch",
       maxBodyLength: Infinity,
-      url: `https://hotstar-backend.onrender.com/users/${id}`,
+      url: `${process.env.REACT_APP_BASE_URL}/users/${id}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -99,8 +99,7 @@ function Profile(props) {
             ref={nameRef}
             display="none"
             marginTop={"10px"}
-            justifyContent={"center"}
-          >
+            justifyContent={"center"}>
             <Input
               w={200}
               fontSize={22}
@@ -152,8 +151,7 @@ function Profile(props) {
             _active={{}}
             onClick={() => {
               navigate("/login");
-            }}
-          >
+            }}>
             GET DISNEY+ HOTSTAR PREMIUM <ChevronRightIcon fontSize="30px" />{" "}
           </Button>
         </Box>
@@ -165,8 +163,7 @@ function Profile(props) {
         cursor="pointer"
         onClick={() => {
           navigate("/account-settings");
-        }}
-      >
+        }}>
         <Flex margin="auto" justifyContent="space-between">
           <Text fontSize="20px">Account Settings</Text>
           <ChevronRightIcon fontSize="35px" opacity={0.6} />
@@ -186,8 +183,7 @@ function Profile(props) {
         onClick={() => {
           dispatch(Logoutfun());
           navigate("/");
-        }}
-      >
+        }}>
         <Flex margin="auto" justifyContent="space-between">
           <Text fontSize="20px">Log Out</Text>
           <ChevronRightIcon fontSize="35px" opacity={0.6} />
