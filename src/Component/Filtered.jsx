@@ -14,12 +14,12 @@ export default function Filtered() {
   const [data, setData] = useState([]);
   const [currGenere, setCurrGenere] = useState([]);
 
-  const API_KEY = "939cb94eb1470cd3b74b2ec575a26449";
+  const REACT_API_KEY = process.env.REACT_API_KEY;
   const loading = useSelector((state) => state.movieReducer.loading);
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}&with_original_language=hi`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${REACT_API_KEY}&with_genres=${id}&with_original_language=hi`
       );
       const data = await response.json();
       setData(data.results);

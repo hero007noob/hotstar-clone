@@ -15,7 +15,7 @@ export default function Play() {
     return () => {};
   }, []);
   const getKey = async () => {
-    let url = `https://api.themoviedb.org/3/${parms.type}/${parms.id}/videos?api_key=939cb94eb1470cd3b74b2ec575a26449&language=en-US`;
+    let url = `https://api.themoviedb.org/3/${parms.type}/${parms.id}/videos?api_key=ac3ffb9076cbecea4fb68f53b263a01d&language=en-US`;
     let res = await axios.get(url);
     console.log(res.data.results[0]);
     setResults(res.data.results[0]);

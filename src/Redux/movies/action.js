@@ -3,7 +3,7 @@ import { GET_MOVIE_DATA } from "./actionType";
 
 const getMovies = ({ sort, key, language }) => {
   return (dispatch) => {
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=939cb94eb1470cd3b74b2ec575a26449&language=en-US&include_adult=false&include_video=false&page=1`;
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac3ffb9076cbecea4fb68f53b263a01d&language=en-US&include_adult=false&include_video=false&page=1`;
     if (sort) {
       url += `&sort_by=${sort}`;
     }
@@ -26,7 +26,7 @@ const getMovies = ({ sort, key, language }) => {
 };
 const getSimilar = ({ id, key }) => {
   return (dispatch) => {
-    let url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=939cb94eb1470cd3b74b2ec575a26449&language=en-US&page=1`;
+    let url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=ac3ffb9076cbecea4fb68f53b263a01d&language=en-US&page=1`;
     try {
       dispatch(movieData({ loading: true }));
       axios.get(url).then((res) => {
@@ -43,7 +43,7 @@ const getSimilar = ({ id, key }) => {
 };
 const searchMovie = ({ query, key }) => {
   return (dispatch) => {
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=939cb94eb1470cd3b74b2ec575a26449&language=en-US&query=${query}&page=1&include_adult=false`;
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=ac3ffb9076cbecea4fb68f53b263a01d&language=en-US&query=${query}&page=1&include_adult=false`;
     try {
       // dispatch(movieData({ loading: false }))
       axios.get(url).then((res) => {

@@ -13,7 +13,7 @@ function TopCarousel() {
   }, []);
   const getTrending = async () => {
     let res = await axios.get(
-      "https://api.themoviedb.org/3/trending/movie/week?api_key=939cb94eb1470cd3b74b2ec575a26449"
+      `https://api.themoviedb.org/3/trending/movie/week?api_key=ac3ffb9076cbecea4fb68f53b263a01d`
     );
     let results = res.data.results;
     console.log(results);
